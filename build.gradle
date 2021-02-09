@@ -15,6 +15,7 @@ ext {
             commons_lang3      : '3.11',
             commons_collections: '4.4',
             commons_beanutils  : '1.9.4',
+            springfox          : '3.0.0',
             fixture_factory    : '3.1.0',
             faker              : '1.0.2'
     ]
@@ -32,6 +33,7 @@ ext {
                     "commons-beanutils:commons-beanutils:${versions.commons_beanutils}"
             ],
             lombok     : ['org.projectlombok:lombok'],
+            swagger    : ["io.springfox:springfox-boot-starter:${versions.springfox}"],
             tests      : [
                     'org.springframework.boot:spring-boot-starter-test',
                     "br.com.six2six:fixture-factory:${versions.fixture_factory}",
@@ -57,6 +59,7 @@ dependencies {
     implementation libs.spring_boot
     implementation libs.java
     implementation libs.commons
+    implementation libs.swagger
 
     compileOnly libs.lombok
     testCompileOnly libs.lombok

@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: Partner Api
+  description: Open Api Specification
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/api/v1
+    description: local
+
+externalDocs:
+  url: https://github.com/FernandoTAA/partner/blob/main/README.md
+  description: For more information about this api
+
+paths:
+  /partner:
+    post:
+      tags:
+        - Partner
+      summary: Creates a partner
+      description: >
+        This endpoint creates a message partner
+      operationId: postTemplate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerBatchRequest'
+      responses:
+        '201':
+          description: Created
+        '400':
+          $ref: '#/components/responses/BadRequest'
+#      externalDocs:
+#        description: Learn more about partner operation provided by this API
+#        url:
+
+components:
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+
+  schemas:
+    PartnerRequest:
+      type: object
+      properties:
+        tradingName:
+          type: string
+          example: Adega Pinheiros
+        ownerName:
+          type: string
+          example: Ze da Silva
+        document:
+          type: string
+          example: 4.433.714/0001-44
+      required:
+        - tradingName
+        - ownerName
+        - document
+
+    PartnerBatchRequest:
+      type: object
+      properties:
+        pdvs:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartnerRequest'
+      required:
+        - content
+
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+          example: error message
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+
+    Error:
+      type: object
+      properties:
+        scope:
+          type: string
+          example: path
+        field:
+          type: string
+          example: field_name
+        value:
+          type: string
+          example: field_value
+        message:
+          type: string
+          example: this field contains error
