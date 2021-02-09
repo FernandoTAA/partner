@@ -32,9 +32,9 @@ paths:
           description: Created
         '400':
           $ref: '#/components/responses/BadRequest'
-#      externalDocs:
-#        description: Learn more about partner operation provided by this API
-#        url:
+      externalDocs:
+        description: Learn more about partner operation provided by this API
+        url: https://github.com/FernandoTAA/partner/wiki/%5BAPI%5D-POST-partner-(v1)
 
 components:
   responses:
