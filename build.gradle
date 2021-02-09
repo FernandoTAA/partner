@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group = 'com.github.fernandotaa'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+ext {
+    versions = [
+            javax_inject       : '1',
+            commons_lang3      : '3.11',
+            commons_collections: '4.4',
+            commons_beanutils  : '1.9.4',
+            fixture_factory    : '3.1.0',
+            faker              : '1.0.2'
+    ]
+    libs = [
+            spring_boot: [
+                    'org.springframework.boot:spring-boot-starter-web',
+                    'org.springframework.boot:spring-boot-starter-validation',
+                    'org.springframework.boot:spring-boot-starter-jetty',
+                    'org.springframework.boot:spring-boot-starter-actuator'
+            ],
+            java       : ["javax.inject:javax.inject:${versions.javax_inject}"],
+            commons    : [
+                    "org.apache.commons:commons-lang3:${versions.commons_lang3}",
+                    "org.apache.commons:commons-collections4:${versions.commons_collections}",
+                    "commons-beanutils:commons-beanutils:${versions.commons_beanutils}"
+            ],
+            lombok     : ['org.projectlombok:lombok'],
+            tests      : [
+                    'org.springframework.boot:spring-boot-starter-test',
+                    "br.com.six2six:fixture-factory:${versions.fixture_factory}",
+                    "com.github.javafaker:javafaker:${versions.faker}"
+            ]
+    ]
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    compile.exclude module: 'spring-boot-starter-tomcat'
+    compile.exclude module: 'junit-vintage-engine'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation libs.spring_boot
+    implementation libs.java
+    implementation libs.commons
+
+    compileOnly libs.lombok
+    testCompileOnly libs.lombok
+    annotationProcessor libs.lombok
+    testAnnotationProcessor libs.lombok
+
+    testImplementation libs.tests
+}
+
+test {
+    useJUnitPlatform()
+}
