@@ -6,9 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import java.util.List;
 
 /**
  * Representation of a unique Partner in requests.

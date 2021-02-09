@@ -4,7 +4,6 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverInputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverUseCase;
-import com.github.fernandotaa.partner.entrypoint.rest.data.PartnerBatchRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

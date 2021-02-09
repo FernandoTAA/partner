@@ -11,7 +11,6 @@ import com.github.javafaker.Faker;
 import lombok.SneakyThrows;
 import org.apache.commons.beanutils.BeanUtils;
 
-import javax.validation.constraints.NotBlank;
 import java.text.MessageFormat;
 import java.util.List;
 

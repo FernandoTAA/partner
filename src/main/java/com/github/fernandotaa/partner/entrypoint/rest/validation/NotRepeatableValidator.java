@@ -6,7 +6,9 @@ import org.apache.commons.collections.CollectionUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static java.text.MessageFormat.format;

@@ -24,7 +24,7 @@ final public class RandomUtils {
     /**
      * Generate a random document with pattern "{number}/{number}"
      * Example: 02.453.716/000170
-     *          04.433.714/0001-44
+     * 04.433.714/0001-44
      *
      * @return
      */

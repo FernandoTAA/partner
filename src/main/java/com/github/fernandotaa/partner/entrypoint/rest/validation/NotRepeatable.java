@@ -14,7 +14,10 @@ import static java.lang.annotation.ElementType.PARAMETER;
 @Constraint(validatedBy = NotRepeatableValidator.class)
 public @interface NotRepeatable {
     String message() default "must not be repeatable values: {0}";
+
     String field();
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

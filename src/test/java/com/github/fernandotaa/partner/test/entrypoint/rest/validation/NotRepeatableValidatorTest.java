@@ -10,8 +10,6 @@ import org.apache.commons.collections4.ListUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Mockito;
 
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
@@ -78,6 +76,7 @@ public class NotRepeatableValidatorTest {
         doReturn(mock(ConstraintValidatorContext.ConstraintViolationBuilder.class)).when(mock).buildConstraintViolationWithTemplate(anyString());
         return mock;
     }
+
     private NotRepeatable generateNotRepeatableAnnotation(String message, String field) {
         return new NotRepeatable() {
             @Override

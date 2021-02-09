@@ -18,7 +18,7 @@ final public class FixtureUtils {
      * @return - {@link AtomicFunction}
      */
     @SuppressWarnings("unchecked")
-    public static AtomicFunction function(Supplier<Object> supplier){
+    public static AtomicFunction function(Supplier<Object> supplier) {
         return new AtomicFunction() {
             @Override
             public Object generateValue() {
