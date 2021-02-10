@@ -2,12 +2,14 @@ package com.github.fernandotaa.partner.test.core.usecase;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.github.fernandotaa.partner.core.repository.PartnerRepository;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverInputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverUseCase;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 
@@ -16,6 +18,9 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 public class PartnerSaverUseCaseTest {
     @Autowired
     PartnerSaverUseCase partnerSaverUseCase;
+
+    @MockBean
+    PartnerRepository partnerRepository;
 
     @BeforeAll
     static void beforeEach() {

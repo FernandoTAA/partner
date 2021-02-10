@@ -58,6 +58,18 @@ public class NotRepeatableValidatorTest {
         Assertions.assertThat(valid).isFalse();
     }
 
+    @Test
+    @DisplayName("Test case with wrong field")
+    void wrongField() {
+        var validator = new NotRepeatableValidator() {{
+            initialize(generateNotRepeatableAnnotation("must not be repeatable values: {0}", "property1"));
+        }};
+
+        var constraintValidatorContext = getMockConstraintValidatorContext();
+
+        org.junit.jupiter.api.Assertions.assertThrows(NoSuchMethodException.class, () -> validator.isValid(getCollectionTestWithDuplicatedProperty(), constraintValidatorContext));
+    }
+
     private List<ObjectTest> getCollectionTest() {
         return Stream.generate(Faker.instance().name()::name)
                 .distinct()
