@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=${mongoDatabase}
+      - MONGO_INITDB_ROOT_USERNAME=${mongoUsername}
+      - MONGO_INITDB_ROOT_PASSWORD=${mongoPassword}
+    volumes:
+      - ./volumes/mongo:/data/db
+    ports:
+      - 27017-27019:27017-27019
+    networks:
+      - partner-network
+
+networks:
+  partner-network:
+    driver: bridge

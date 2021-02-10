@@ -1,4 +1,7 @@
 spring:
   application:
     name: Partner
+  data:
+    mongodb:
+      uri: mongodb://partner:Mongo123@localhost:27017/partner?authSource=admin
 
