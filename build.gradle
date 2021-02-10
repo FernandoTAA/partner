@@ -30,6 +30,7 @@ ext {
             ],
             java       : ["javax.inject:javax.inject:${versions.javax_inject}"],
             commons    : [
+                    'de.flapdoodle.embed:de.flapdoodle.embed.mongo',
                     "org.apache.commons:commons-lang3:${versions.commons_lang3}",
                     "org.apache.commons:commons-collections4:${versions.commons_collections}",
                     "commons-beanutils:commons-beanutils:${versions.commons_beanutils}"

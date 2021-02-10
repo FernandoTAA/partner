@@ -27,10 +27,6 @@ public class PartnerRequest {
      * @return - {@link Partner}
      */
     public Partner toEntity() {
-        return Partner.builder()
-                .tradingName(tradingName)
-                .ownerName(ownerName)
-                .document(document)
-                .build();
+        return new Partner(tradingName, ownerName, document);
     }
 }

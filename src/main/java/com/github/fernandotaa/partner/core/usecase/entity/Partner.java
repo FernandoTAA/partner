@@ -1,11 +1,13 @@
 package com.github.fernandotaa.partner.core.usecase.entity;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * Representation of a unique Partner in requests.
  */
-@Builder
+@Getter
+@AllArgsConstructor
 public class Partner {
     private String tradingName;
     private String ownerName;
