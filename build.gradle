@@ -30,7 +30,6 @@ ext {
             ],
             java       : ["javax.inject:javax.inject:${versions.javax_inject}"],
             commons    : [
-                    'de.flapdoodle.embed:de.flapdoodle.embed.mongo',
                     "org.apache.commons:commons-lang3:${versions.commons_lang3}",
                     "org.apache.commons:commons-collections4:${versions.commons_collections}",
                     "commons-beanutils:commons-beanutils:${versions.commons_beanutils}"
@@ -38,6 +37,7 @@ ext {
             lombok     : ['org.projectlombok:lombok'],
             swagger    : ["io.springfox:springfox-boot-starter:${versions.springfox}"],
             tests      : [
+                    'de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.1.1',
                     'org.springframework.boot:spring-boot-starter-test',
                     "br.com.six2six:fixture-factory:${versions.fixture_factory}",
                     "com.github.javafaker:javafaker:${versions.faker}"

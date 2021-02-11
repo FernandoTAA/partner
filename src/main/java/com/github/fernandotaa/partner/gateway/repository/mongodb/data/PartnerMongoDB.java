@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document
+@Document("partner")
 public class PartnerMongoDB {
     @Id
     private String id;

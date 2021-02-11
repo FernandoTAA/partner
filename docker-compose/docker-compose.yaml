@@ -3,12 +3,11 @@ services:
   mongodb:
     container_name: mongodb
     image: mongo
-    environment:
-      - MONGO_INITDB_DATABASE=${mongoDatabase}
-      - MONGO_INITDB_ROOT_USERNAME=${mongoUsername}
-      - MONGO_INITDB_ROOT_PASSWORD=${mongoPassword}
+    env_file:
+      - .env
     volumes:
-      - ./volumes/mongo:/data/db
+      - ./mongodb/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./volumes/mongo/db/:/data/db
     ports:
       - 27017-27019:27017-27019
     networks:
