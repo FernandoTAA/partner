@@ -3,11 +3,15 @@ package com.github.fernandotaa.partner.test.entrypoint.rest;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdUseCase;
+import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverInputValues;
+import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverOutputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverUseCase;
 import com.github.fernandotaa.partner.entrypoint.rest.data.PartnerBatchRequest;
 import com.github.fernandotaa.partner.entrypoint.rest.handler.data.Error;
 import com.github.fernandotaa.partner.util.JsonUtils;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,16 +22,21 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest
-@DisplayName("Test cases of Web Service \"/v1/partner\"")
-public class PartnerControllerTest {
-
+@DisplayName("Test cases of Web Service [POST] \"/v1/partner\"")
+public class PartnerControllerMethodPostBatchTest {
     @Autowired
     MockMvc mockMvc;
 
@@ -37,22 +46,30 @@ public class PartnerControllerTest {
     @MockBean
     PartnerSaverUseCase partnerSaverUseCase;
 
+    @MockBean
+    PartnerGetterByIdUseCase partnerGetterByIdUseCase;
+
     @BeforeAll
-    static void beforeEach() {
+    static void beforeAll() {
         FixtureFactoryLoader.loadTemplates("com.github.fernandotaa.partner.test.entrypoint.rest.data.fixture");
     }
 
     @Test
     @DisplayName("Success test case")
-    void postBatch_success() throws Exception {
-        var partnerBatchRequest = Fixture.from(PartnerBatchRequest.class).gimme("valid");
+    void success() throws Exception {
+        PartnerBatchRequest partnerBatchRequest = Fixture.from(PartnerBatchRequest.class).gimme("valid");
+
+        var partnerIds = Stream.generate(UUID.randomUUID()::toString).limit(partnerBatchRequest.getPdvs().size()).collect(Collectors.toList());
+        doReturn(new PartnerSaverOutputValues(partnerIds)).when(partnerSaverUseCase).execute(any(PartnerSaverInputValues.class));
 
         RequestBuilder requestBuilder = post("/api/v1/partner")
                 .content(mapper.writeValueAsString(partnerBatchRequest))
                 .contentType("application/json");
 
         mockMvc.perform(requestBuilder)
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.ids", hasSize(partnerBatchRequest.getPdvs().size())));
     }
 
     @ParameterizedTest(name = "Error test case with fixture template {0}")
@@ -67,7 +84,7 @@ public class PartnerControllerTest {
             "invalid_document_empty",
             "invalid_document_duplicated"
     })
-    void postBatch_invalid_error(String fixtureTemplate) throws Exception {
+    void invalid_error(String fixtureTemplate) throws Exception {
         var partnerBatchRequest = Fixture.from(PartnerBatchRequest.class).gimme(fixtureTemplate);
         var error = Fixture.from(Error.class).gimme(fixtureTemplate);
 

@@ -1,6 +1,7 @@
 package com.github.fernandotaa.partner.core.repository;
 
 import com.github.fernandotaa.partner.core.usecase.entity.Partner;
+import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
 
 /**
  * Repository to manage {@link Partner} data.
@@ -10,7 +11,8 @@ public interface PartnerRepository {
     /**
      * Save a new record of {@link Partner}.
      *
-     * @param partner - {@link Partner} to save;
+     * @param partner - {@link PartnerBase} to save;
+     * @return
      */
-    void save(Partner partner);
+    String save(PartnerBase partner);
 }

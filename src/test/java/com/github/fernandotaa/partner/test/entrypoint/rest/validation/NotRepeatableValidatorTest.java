@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -41,7 +42,7 @@ public class NotRepeatableValidatorTest {
 
         var valid = validator.isValid(getCollectionTest(), constraintValidatorContext);
 
-        Assertions.assertThat(valid).isTrue();
+        assertThat(valid).isTrue();
     }
 
     @Test
@@ -55,7 +56,7 @@ public class NotRepeatableValidatorTest {
 
         var valid = validator.isValid(getCollectionTestWithDuplicatedProperty(), constraintValidatorContext);
 
-        Assertions.assertThat(valid).isFalse();
+        assertThat(valid).isFalse();
     }
 
     @Test

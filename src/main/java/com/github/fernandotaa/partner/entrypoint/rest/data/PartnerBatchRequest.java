@@ -1,6 +1,7 @@
 package com.github.fernandotaa.partner.entrypoint.rest.data;
 
 import com.github.fernandotaa.partner.core.usecase.entity.Partner;
+import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
 import com.github.fernandotaa.partner.entrypoint.rest.validation.NotRepeatable;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,9 +25,9 @@ public class PartnerBatchRequest {
     /**
      * Convert {@link List} of {@link PartnerRequest} to {@link List} of {@link Partner}.
      *
-     * @return - {@link List} of {@link Partner}
+     * @return - {@link List} of {@link PartnerBase}
      */
-    public List<Partner> toEntity() {
+    public List<PartnerBase> toEntity() {
         return pdvs.stream()
                 .map(PartnerRequest::toEntity)
                 .collect(Collectors.toList());

@@ -1,6 +1,6 @@
 package com.github.fernandotaa.partner.gateway.repository.mongodb.data;
 
-import com.github.fernandotaa.partner.core.usecase.entity.Partner;
+import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public class PartnerMongoDB {
     private String ownerName;
     private String document;
 
-    public static PartnerMongoDB from(Partner partner) {
+    public static PartnerMongoDB from(PartnerBase partner) {
         return new PartnerMongoDB(
                 null,
                 partner.getTradingName(),

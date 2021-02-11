@@ -1,6 +1,7 @@
 package com.github.fernandotaa.partner.entrypoint.rest.data;
 
 import com.github.fernandotaa.partner.core.usecase.entity.Partner;
+import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,7 +27,7 @@ public class PartnerRequest {
      *
      * @return - {@link Partner}
      */
-    public Partner toEntity() {
-        return new Partner(tradingName, ownerName, document);
+    public PartnerBase toEntity() {
+        return new PartnerBase(tradingName, ownerName, document);
     }
 }

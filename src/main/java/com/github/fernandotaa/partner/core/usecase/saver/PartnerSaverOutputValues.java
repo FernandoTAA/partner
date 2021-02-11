@@ -1,17 +1,17 @@
 package com.github.fernandotaa.partner.core.usecase.saver;
 
 import com.github.fernandotaa.partner.core.usecase.InputValues;
-import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
+import com.github.fernandotaa.partner.core.usecase.OutputValues;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.List;
 
 /**
- * {@link InputValues} for {@link PartnerSaverUseCase}.
+ * {@link OutputValues} for {@link PartnerSaverUseCase}.
  */
 @Getter
 @AllArgsConstructor
-public class PartnerSaverInputValues implements InputValues {
-    private List<PartnerBase> partners;
+final public class PartnerSaverOutputValues implements OutputValues {
+    private List<String> partnerIds;
 }

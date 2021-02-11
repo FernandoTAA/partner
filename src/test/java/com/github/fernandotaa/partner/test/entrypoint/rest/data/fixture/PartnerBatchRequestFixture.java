@@ -18,7 +18,7 @@ import static com.github.fernandotaa.partner.util.FixtureUtils.function;
 import static com.github.fernandotaa.partner.util.RandomUtils.integer;
 
 /**
- * Fixture template loader for PartnerBatchRequest to use in Partner Tests;
+ * Fixture template loader for {@link PartnerBatchRequest} to use in Partner Tests;
  */
 public class PartnerBatchRequestFixture implements TemplateLoader {
     @Override
