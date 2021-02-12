@@ -7,7 +7,6 @@ import com.github.javafaker.Faker;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.commons.collections4.ListUtils;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

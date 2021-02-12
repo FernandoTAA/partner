@@ -25,6 +25,7 @@ public class PartnerFixture implements TemplateLoader {
         loadValidPartner();
         loadValidPartnerSaverInputValues();
         loadValidPartnerGetterByIdOutputValues();
+        loadInvalidPartnerGetterByIdOutputValuesEmpty();
     }
 
     private void loadValidPartnerBase() {
@@ -57,6 +58,13 @@ public class PartnerFixture implements TemplateLoader {
         Fixture.of(PartnerGetterByIdOutputValues.class)
                 .addTemplate("valid", new Rule() {{
                     add("partner", Optional.of(Fixture.from(Partner.class).gimme("valid")));
+                }});
+    }
+
+    private void loadInvalidPartnerGetterByIdOutputValuesEmpty() {
+        Fixture.of(PartnerGetterByIdOutputValues.class)
+                .addTemplate("empty", new Rule() {{
+                    add("partner", Optional.empty());
                 }});
     }
 }

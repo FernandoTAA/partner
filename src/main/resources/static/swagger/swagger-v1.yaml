@@ -19,8 +19,8 @@ paths:
         - Partner
       summary: Creates a partner
       description: >
-        This endpoint creates a message partner
-      operationId: postTemplate
+        This endpoint creates a partner
+      operationId: postPartnerBatch
       requestBody:
         required: true
         content:
@@ -30,11 +30,45 @@ paths:
       responses:
         '201':
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerBatchResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '500':
+          description: Internal Server Error
       externalDocs:
         description: Learn more about partner operation provided by this API
         url: https://github.com/FernandoTAA/partner/wiki/%5BAPI%5D-POST-partner-(v1)
+  /partner/{id}/:
+    get:
+      tags:
+        - Partner
+      summary: Get a partner by id
+      description: >
+        This endpoint get a partner by id
+      operationId: getPartnerById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          description: Internal Server Error
+      externalDocs:
+        description: Learn more about partner operation provided by this API
+        url: https://github.com/FernandoTAA/partner/wiki/%5BAPI%5D-GET-partner-by-id-(v1)
 
 components:
   responses:
@@ -50,7 +84,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ApiError'
+            $ref: '#/components/schemas/ApiErrorSimple'
 
   schemas:
     PartnerRequest:
@@ -78,7 +112,34 @@ components:
           items:
             $ref: '#/components/schemas/PartnerRequest'
       required:
-        - content
+        - pdvs
+
+    PartnerBatchResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+            example: 6024991257427b090579566a
+
+    PartnerResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 6024991257427b090579566a
+        tradingName:
+          type: string
+          example: Adega Pinheiros
+        ownerName:
+          type: string
+          example: Ze da Silva
+        document:
+          type: string
+          example: 4.433.714/0001-44
+
+
 
     ApiError:
       type: object
@@ -90,6 +151,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
+
+    ApiErrorSimple:
+      type: object
+      properties:
+        message:
+          type: string
+          example: error message
 
     Error:
       type: object

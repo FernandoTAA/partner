@@ -2,14 +2,13 @@ package com.github.fernandotaa.partner.test.entrypoint.rest;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
-import com.github.fernandotaa.partner.core.usecase.entity.Partner;
 import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdInputValues;
 import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdOutputValues;
 import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdUseCase;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverUseCase;
 import com.github.fernandotaa.partner.entrypoint.rest.data.PartnerResponse;
-import com.github.fernandotaa.partner.entrypoint.rest.handler.data.Error;
 import com.github.fernandotaa.partner.util.JsonUtils;
+import com.github.fernandotaa.partner.util.RandomUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,9 +22,10 @@ import org.springframework.test.web.servlet.RequestBuilder;
 
 import java.text.MessageFormat;
 
-import static org.hamcrest.Matchers.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest
@@ -52,7 +52,7 @@ public class PartnerControllerMethodGetByIdTest {
         var partnerResponse = PartnerResponse.from(output.getPartner().get());
         Mockito.doReturn(output).when(partnerGetterByIdUseCase).execute(ArgumentMatchers.any(PartnerGetterByIdInputValues.class));
 
-        var path = MessageFormat.format( "/api/v1/partner/{0}/", partnerResponse.getId());
+        var path = MessageFormat.format("/api/v1/partner/{0}/", partnerResponse.getId());
         RequestBuilder requestBuilder = get(path);
 
         mockMvc.perform(requestBuilder)
@@ -66,7 +66,17 @@ public class PartnerControllerMethodGetByIdTest {
 
     @Test
     @DisplayName("Error test case where it do not found partner by id")
-    void not_found_error() {
+    void not_found_error() throws Exception {
+        PartnerGetterByIdOutputValues output = Fixture.from(PartnerGetterByIdOutputValues.class).gimme("empty");
+        Mockito.doReturn(output).when(partnerGetterByIdUseCase).execute(ArgumentMatchers.any(PartnerGetterByIdInputValues.class));
+
+        var path = MessageFormat.format("/api/v1/partner/{0}/", RandomUtils.uuid());
+        RequestBuilder requestBuilder = get(path);
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.message", is("partner not found")));
 
     }
 }

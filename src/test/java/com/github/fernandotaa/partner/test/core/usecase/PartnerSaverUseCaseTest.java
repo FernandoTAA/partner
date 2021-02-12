@@ -7,6 +7,7 @@ import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverInputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverOutputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverUseCase;
+import com.github.fernandotaa.partner.util.RandomUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -38,7 +39,7 @@ public class PartnerSaverUseCaseTest {
 
     @BeforeEach
     void beforeEach() {
-        when(partnerRepository.save(any(PartnerBase.class))).thenAnswer(invocation -> UUID.randomUUID().toString());
+        when(partnerRepository.save(any(PartnerBase.class))).thenAnswer(invocation -> RandomUtils.uuid());
     }
 
     @Test

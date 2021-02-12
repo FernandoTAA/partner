@@ -1,6 +1,5 @@
 package com.github.fernandotaa.partner.core.usecase.saver;
 
-import com.github.fernandotaa.partner.core.usecase.InputValues;
 import com.github.fernandotaa.partner.core.usecase.OutputValues;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

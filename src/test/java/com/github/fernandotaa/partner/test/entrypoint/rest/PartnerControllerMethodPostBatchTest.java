@@ -11,7 +11,6 @@ import com.github.fernandotaa.partner.entrypoint.rest.data.PartnerBatchRequest;
 import com.github.fernandotaa.partner.entrypoint.rest.handler.data.Error;
 import com.github.fernandotaa.partner.util.JsonUtils;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
