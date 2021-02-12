@@ -16,11 +16,22 @@ public class PartnerMongoDBFixture implements TemplateLoader {
     @Override
     public void load() {
         loadValidPartner();
+        loadSavedPartner();
     }
 
     private void loadValidPartner() {
         Fixture.of(PartnerMongoDB.class)
                 .addTemplate("valid", new Rule() {{
+                    add("tradingName", function(Faker.instance().company()::name));
+                    add("ownerName", function(Faker.instance().name()::name));
+                    add("document", function(RandomUtils::document));
+                }});
+    }
+
+    private void loadSavedPartner() {
+        Fixture.of(PartnerMongoDB.class)
+                .addTemplate("saved", new Rule() {{
+                    add("id", function(RandomUtils::uuid));
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", function(Faker.instance().name()::name));
                     add("document", function(RandomUtils::document));

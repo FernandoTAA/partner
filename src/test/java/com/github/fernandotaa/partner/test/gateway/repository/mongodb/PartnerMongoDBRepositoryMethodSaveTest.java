@@ -4,6 +4,7 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.PartnerMongoDBRepository;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.data.PartnerMongoDB;
+import com.github.fernandotaa.partner.util.RandomUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DataMongoTest
-@DisplayName("Test cases of PartnerMongoDBRepository")
-public class PartnerMongoDBRepositoryTest {
+@DisplayName("Test cases of PartnerMongoDBRepository and method findById")
+public class PartnerMongoDBRepositoryMethodSaveTest {
     @Autowired
     PartnerMongoDBRepository partnerMongoDBRepository;
 
@@ -28,13 +29,12 @@ public class PartnerMongoDBRepositoryTest {
     @DisplayName("Success test case")
     void success() {
         PartnerMongoDB partner = Fixture.from(PartnerMongoDB.class).gimme("valid");
-        var result = partnerMongoDBRepository.save(partner);
+        var saved = partnerMongoDBRepository.save(partner);
         assertAll(
-                () -> assertThat(result).isNotNull().extracting(PartnerMongoDB::getId).isNotNull(),
-                () -> assertThat(result).isNotNull().extracting(PartnerMongoDB::getTradingName).isEqualTo(partner.getTradingName()),
-                () -> assertThat(result).isNotNull().extracting(PartnerMongoDB::getOwnerName).isEqualTo(partner.getOwnerName()),
-                () -> assertThat(result).isNotNull().extracting(PartnerMongoDB::getDocument).isEqualTo(partner.getDocument())
+                () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getId).isNotNull(),
+                () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getTradingName).isEqualTo(partner.getTradingName()),
+                () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getOwnerName).isEqualTo(partner.getOwnerName()),
+                () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getDocument).isEqualTo(partner.getDocument())
         );
-
     }
 }

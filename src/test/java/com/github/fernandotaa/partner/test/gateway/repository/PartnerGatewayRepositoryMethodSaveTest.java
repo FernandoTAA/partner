@@ -2,6 +2,7 @@ package com.github.fernandotaa.partner.test.gateway.repository;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.github.fernandotaa.partner.core.usecase.entity.Partner;
 import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
 import com.github.fernandotaa.partner.gateway.repository.PartnerGatewayRepository;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.PartnerMongoDBRepository;
@@ -10,22 +11,22 @@ import com.github.fernandotaa.partner.util.RandomUtils;
 import lombok.SneakyThrows;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.invocation.InvocationOnMock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import static org.mockito.ArgumentMatchers.any;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 @SpringJUnitConfig(classes = PartnerGatewayRepository.class)
-@DisplayName("Test cases of PartnerGatewayRepository")
-public class PartnerGatewayRepositoryTest {
+@DisplayName("Test cases of PartnerGatewayRepository and method save")
+public class PartnerGatewayRepositoryMethodSaveTest {
     @Autowired
     PartnerGatewayRepository partnerGatewayRepository;
 
@@ -39,7 +40,7 @@ public class PartnerGatewayRepositoryTest {
 
     @BeforeEach
     void beforeEach() {
-        when(partnerMongoDBRepository.save(any(PartnerMongoDB.class))).thenAnswer(PartnerGatewayRepositoryTest::mockSave);
+        when(partnerMongoDBRepository.save(any(PartnerMongoDB.class))).thenAnswer(PartnerGatewayRepositoryMethodSaveTest::mockSave);
     }
 
     @SneakyThrows
@@ -54,6 +55,6 @@ public class PartnerGatewayRepositoryTest {
     void success() {
         PartnerBase partner = Fixture.from(PartnerBase.class).gimme("valid");
         var id = partnerGatewayRepository.save(partner);
-        Assertions.assertThat(id).isNotNull();
+        assertThat(id).isNotNull();
     }
 }

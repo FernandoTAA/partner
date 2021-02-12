@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Named
 @AllArgsConstructor
 public class PartnerSaverUseCase implements UseCase<PartnerSaverInputValues, PartnerSaverOutputValues> {
-    private PartnerRepository partnerRepository;
+    private final PartnerRepository partnerRepository;
 
     @Override
     public PartnerSaverOutputValues execute(PartnerSaverInputValues input) {

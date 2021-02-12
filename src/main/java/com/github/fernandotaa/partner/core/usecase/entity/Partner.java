@@ -9,7 +9,7 @@ import lombok.Getter;
 public class Partner extends PartnerBase {
     private String id;
 
-    public Partner(String tradingName, String ownerName, String document, String id) {
+    public Partner(String id, String tradingName, String ownerName, String document) {
         super(tradingName, ownerName, document);
         this.id = id;
     }
