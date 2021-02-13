@@ -4,7 +4,6 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.PartnerMongoDBRepository;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.data.PartnerMongoDB;
-import com.github.fernandotaa.partner.util.RandomUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

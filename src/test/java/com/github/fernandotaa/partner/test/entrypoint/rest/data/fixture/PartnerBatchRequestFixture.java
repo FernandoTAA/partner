@@ -6,7 +6,7 @@ import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.github.fernandotaa.partner.entrypoint.rest.data.PartnerBatchRequest;
 import com.github.fernandotaa.partner.entrypoint.rest.data.PartnerRequest;
 import com.github.fernandotaa.partner.entrypoint.rest.handler.data.Error;
-import com.github.fernandotaa.partner.util.RandomUtils;
+import com.github.fernandotaa.partner.util.RandomTestUtils;
 import com.github.javafaker.Faker;
 import lombok.SneakyThrows;
 import org.apache.commons.beanutils.BeanUtils;
@@ -15,7 +15,7 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import static com.github.fernandotaa.partner.util.FixtureUtils.function;
-import static com.github.fernandotaa.partner.util.RandomUtils.integer;
+import static com.github.fernandotaa.partner.util.RandomTestUtils.integer;
 
 /**
  * Fixture template loader for {@link PartnerBatchRequest} to use in Partner Tests;
@@ -46,6 +46,12 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         loadErrorForInvalidPartnerBatchRequestDocumentNull();
         loadInvalidPartnerRequestDocumentEmpty();
         loadInvalidPartnerBatchRequestDocumentEmpty();
+        loadInvalidPartnerRequestAddressNull();
+        loadInvalidPartnerBatchRequestAddressNull();
+        loadErrorForInvalidPartnerBatchRequestAddressNull();
+        loadInvalidPartnerRequestCoverageAreaNull();
+        loadInvalidPartnerBatchRequestCoverageAreaNull();
+        loadErrorForInvalidPartnerBatchRequestCoverageAreaNull();
         loadErrorForInvalidPartnerBatchRequestDocumentEmpty();
         loadInvalidPartnerBatchRequestDocumentDuplicated();
     }
@@ -55,7 +61,9 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 .addTemplate("valid", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", function(Faker.instance().name()::name));
-                    add("document", function(RandomUtils::document));
+                    add("document", function(RandomTestUtils::document));
+                    add("address", function(RandomTestUtils::point));
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
                 }});
     }
 
@@ -107,7 +115,9 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 .addTemplate("invalid_ownerName_null", new Rule() {{
                     add("tradingName", null);
                     add("ownerName", function(Faker.instance().name()::name));
-                    add("document", function(RandomUtils::document));
+                    add("document", function(RandomTestUtils::document));
+                    add("address", function(RandomTestUtils::point));
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
                 }});
     }
 
@@ -134,7 +144,9 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 .addTemplate("invalid_ownerName_empty", new Rule() {{
                     add("tradingName", "");
                     add("ownerName", function(Faker.instance().name()::name));
-                    add("document", function(RandomUtils::document));
+                    add("document", function(RandomTestUtils::document));
+                    add("address", function(RandomTestUtils::point));
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
                 }});
     }
 
@@ -161,7 +173,9 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 .addTemplate("invalid_tradingName_null", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", null);
-                    add("document", function(RandomUtils::document));
+                    add("document", function(RandomTestUtils::document));
+                    add("address", function(RandomTestUtils::point));
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
                 }});
     }
 
@@ -188,7 +202,9 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 .addTemplate("invalid_tradingName_empty", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", "");
-                    add("document", function(RandomUtils::document));
+                    add("document", function(RandomTestUtils::document));
+                    add("address", function(RandomTestUtils::point));
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
                 }});
     }
 
@@ -216,6 +232,8 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", function(Faker.instance().name()::name));
                     add("document", null);
+                    add("address", function(RandomTestUtils::point));
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
                 }});
     }
 
@@ -243,6 +261,8 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", function(Faker.instance().name()::name));
                     add("document", "");
+                    add("address", function(RandomTestUtils::point));
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
                 }});
     }
 
@@ -261,6 +281,64 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                     add("field", "pdvs[0].document");
                     add("value", "");
                     add("message", "must not be blank");
+                }});
+    }
+
+    private void loadInvalidPartnerRequestAddressNull() {
+        Fixture.of(PartnerRequest.class)
+                .addTemplate("invalid_address_null", new Rule() {{
+                    add("tradingName", function(Faker.instance().company()::name));
+                    add("ownerName", function(Faker.instance().name()::name));
+                    add("document", function(Faker.instance().name()::name));
+                    add("address", null);
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
+                }});
+    }
+
+    private void loadInvalidPartnerBatchRequestAddressNull() {
+        Fixture.of(PartnerBatchRequest.class)
+                .addTemplate("invalid_address_null", new Rule() {{
+                    final int bound = 20;
+                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_address_null"));
+                }});
+    }
+
+    private void loadErrorForInvalidPartnerBatchRequestAddressNull() {
+        Fixture.of(Error.class)
+                .addTemplate("invalid_address_null", new Rule() {{
+                    add("scope", "attribute");
+                    add("field", "pdvs[0].address");
+                    add("value", "null");
+                    add("message", "must not be null");
+                }});
+    }
+
+    private void loadInvalidPartnerRequestCoverageAreaNull() {
+        Fixture.of(PartnerRequest.class)
+                .addTemplate("invalid_coverageArea_null", new Rule() {{
+                    add("tradingName", function(Faker.instance().company()::name));
+                    add("ownerName", function(Faker.instance().name()::name));
+                    add("document", function(Faker.instance().name()::name));
+                    add("address", function(RandomTestUtils::point));
+                    add("coverageArea", null);
+                }});
+    }
+
+    private void loadInvalidPartnerBatchRequestCoverageAreaNull() {
+        Fixture.of(PartnerBatchRequest.class)
+                .addTemplate("invalid_coverageArea_null", new Rule() {{
+                    final int bound = 20;
+                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_coverageArea_null"));
+                }});
+    }
+
+    private void loadErrorForInvalidPartnerBatchRequestCoverageAreaNull() {
+        Fixture.of(Error.class)
+                .addTemplate("invalid_coverageArea_null", new Rule() {{
+                    add("scope", "attribute");
+                    add("field", "pdvs[0].coverageArea");
+                    add("value", "null");
+                    add("message", "must not be null");
                 }});
     }
 

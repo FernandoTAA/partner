@@ -2,7 +2,7 @@ package com.github.fernandotaa.partner.test.entrypoint.rest.validation;
 
 import com.github.fernandotaa.partner.entrypoint.rest.validation.NotRepeatable;
 import com.github.fernandotaa.partner.entrypoint.rest.validation.NotRepeatableValidator;
-import com.github.fernandotaa.partner.util.RandomUtils;
+import com.github.fernandotaa.partner.util.RandomTestUtils;
 import com.github.javafaker.Faker;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -73,7 +73,7 @@ public class NotRepeatableValidatorTest {
     private List<ObjectTest> getCollectionTest() {
         return Stream.generate(Faker.instance().name()::name)
                 .distinct()
-                .limit(RandomUtils.integer(2, 20))
+                .limit(RandomTestUtils.integer(2, 20))
                 .map(ObjectTest::new)
                 .collect(Collectors.toList());
     }

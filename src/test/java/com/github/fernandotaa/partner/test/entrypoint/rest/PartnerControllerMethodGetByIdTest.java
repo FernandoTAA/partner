@@ -7,8 +7,7 @@ import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdO
 import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdUseCase;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverUseCase;
 import com.github.fernandotaa.partner.entrypoint.rest.data.PartnerResponse;
-import com.github.fernandotaa.partner.util.JsonUtils;
-import com.github.fernandotaa.partner.util.RandomUtils;
+import com.github.fernandotaa.partner.util.RandomTestUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -70,7 +69,7 @@ public class PartnerControllerMethodGetByIdTest {
         PartnerGetterByIdOutputValues output = Fixture.from(PartnerGetterByIdOutputValues.class).gimme("empty");
         Mockito.doReturn(output).when(partnerGetterByIdUseCase).execute(ArgumentMatchers.any(PartnerGetterByIdInputValues.class));
 
-        var path = MessageFormat.format("/api/v1/partner/{0}/", RandomUtils.uuid());
+        var path = MessageFormat.format("/api/v1/partner/{0}/", RandomTestUtils.uuid());
         RequestBuilder requestBuilder = get(path);
 
         mockMvc.perform(requestBuilder)

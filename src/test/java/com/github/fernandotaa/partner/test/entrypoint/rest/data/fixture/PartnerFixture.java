@@ -7,13 +7,13 @@ import com.github.fernandotaa.partner.core.usecase.entity.Partner;
 import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
 import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdOutputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverInputValues;
-import com.github.fernandotaa.partner.util.RandomUtils;
+import com.github.fernandotaa.partner.util.RandomTestUtils;
 import com.github.javafaker.Faker;
 
 import java.util.Optional;
 
 import static com.github.fernandotaa.partner.util.FixtureUtils.function;
-import static com.github.fernandotaa.partner.util.RandomUtils.integer;
+import static com.github.fernandotaa.partner.util.RandomTestUtils.integer;
 
 /**
  * Fixture template loader for {@link PartnerFixture} to use in Partner Tests;
@@ -33,17 +33,17 @@ public class PartnerFixture implements TemplateLoader {
                 .addTemplate("valid", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", function(Faker.instance().name()::name));
-                    add("document", function(RandomUtils::document));
+                    add("document", function(RandomTestUtils::document));
                 }});
     }
 
     private void loadValidPartner() {
         Fixture.of(Partner.class)
                 .addTemplate("valid", new Rule() {{
-                    add("id", function(RandomUtils::uuid));
+                    add("id", function(RandomTestUtils::uuid));
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", function(Faker.instance().name()::name));
-                    add("document", function(RandomUtils::document));
+                    add("document", function(RandomTestUtils::document));
                 }});
     }
 

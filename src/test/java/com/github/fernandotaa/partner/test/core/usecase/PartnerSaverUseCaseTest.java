@@ -7,7 +7,7 @@ import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverInputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverOutputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverUseCase;
-import com.github.fernandotaa.partner.util.RandomUtils;
+import com.github.fernandotaa.partner.util.RandomTestUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,8 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -39,7 +37,7 @@ public class PartnerSaverUseCaseTest {
 
     @BeforeEach
     void beforeEach() {
-        when(partnerRepository.save(any(PartnerBase.class))).thenAnswer(invocation -> RandomUtils.uuid());
+        when(partnerRepository.save(any(PartnerBase.class))).thenAnswer(invocation -> RandomTestUtils.uuid());
     }
 
     @Test

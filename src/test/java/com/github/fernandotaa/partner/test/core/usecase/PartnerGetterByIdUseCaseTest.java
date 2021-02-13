@@ -7,13 +7,11 @@ import com.github.fernandotaa.partner.core.usecase.entity.Partner;
 import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdInputValues;
 import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdOutputValues;
 import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdUseCase;
-import com.github.fernandotaa.partner.gateway.repository.mongodb.data.PartnerMongoDB;
-import com.github.fernandotaa.partner.util.RandomUtils;
+import com.github.fernandotaa.partner.util.RandomTestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -59,7 +57,7 @@ public class PartnerGetterByIdUseCaseTest {
     @DisplayName("Error test case where there is not a record with this id")
     void notFound_error() {
         doReturn(Optional.empty()).when(partnerRepository).findById(anyString());
-        var id = RandomUtils.uuid();
+        var id = RandomTestUtils.uuid();
         var input = new PartnerGetterByIdInputValues(id);
         var notFound = partnerGetterByIdUseCase.execute(input);
         Assertions.assertAll(

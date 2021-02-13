@@ -81,6 +81,8 @@ public class PartnerControllerMethodPostBatchTest {
             "invalid_ownerName_empty",
             "invalid_document_null",
             "invalid_document_empty",
+            "invalid_address_null",
+            "invalid_coverageArea_null",
             "invalid_document_duplicated"
     })
     void invalid_error(String fixtureTemplate) throws Exception {
