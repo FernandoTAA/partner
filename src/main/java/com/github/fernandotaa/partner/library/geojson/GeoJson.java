@@ -1,6 +1,7 @@
 package com.github.fernandotaa.partner.library.geojson;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
+@EqualsAndHashCode
 public abstract class GeoJson {
     private String type;
 }

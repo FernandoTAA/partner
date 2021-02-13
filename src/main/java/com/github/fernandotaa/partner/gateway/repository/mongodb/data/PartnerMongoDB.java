@@ -3,7 +3,9 @@ package com.github.fernandotaa.partner.gateway.repository.mongodb.data;
 import com.github.fernandotaa.partner.core.usecase.entity.Partner;
 import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJsonMultiPolygonAdapter;
+import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJsonMultiPolygonMongoDBAdapter;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJsonPointAdapter;
+import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJsonPointMongoDBAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,19 +35,21 @@ public class PartnerMongoDB {
     private GeoJsonPoint address;
 
     public static PartnerMongoDB from(PartnerBase partner) {
+        var geoJsonMultiPolygonMongoDBAdapter = new GeoJsonMultiPolygonMongoDBAdapter(partner.getCoverageArea());
+        var geoJsonPointMongoDBAdapter = new GeoJsonPointMongoDBAdapter(partner.getAddress());
         return new PartnerMongoDB(
                 null,
                 partner.getTradingName(),
                 partner.getOwnerName(),
                 partner.getDocument(),
-                null,
-                null
+                geoJsonMultiPolygonMongoDBAdapter.adapt(),
+                geoJsonPointMongoDBAdapter.adapt()
         );
     }
 
     public static Partner toEntity(PartnerMongoDB partner) {
-        var geoJsonMultiPolygonAdapter = new GeoJsonMultiPolygonAdapter(partner.coverageArea);
-        var geoJsonPointAdapter = new GeoJsonPointAdapter(partner.address);
+        var geoJsonMultiPolygonAdapter = new GeoJsonMultiPolygonAdapter(partner.getCoverageArea());
+        var geoJsonPointAdapter = new GeoJsonPointAdapter(partner.getAddress());
         return new Partner(
                 partner.getId(),
                 partner.getTradingName(),

@@ -3,6 +3,8 @@ package com.github.fernandotaa.partner.test.gateway.repository.mongodb;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.PartnerMongoDBRepository;
+import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJsonMultiPolygonAdapter;
+import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJsonPointAdapter;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.data.PartnerMongoDB;
 import com.github.fernandotaa.partner.util.RandomTestUtils;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,7 +37,9 @@ public class PartnerMongoDBRepositoryMethodFindByIdTest {
                 () -> assertThat(found).isNotNull().isNotEmpty().get().extracting(PartnerMongoDB::getId).isNotNull(),
                 () -> assertThat(found).isNotNull().isNotEmpty().get().extracting(PartnerMongoDB::getTradingName).isEqualTo(partner.getTradingName()),
                 () -> assertThat(found).isNotNull().isNotEmpty().get().extracting(PartnerMongoDB::getOwnerName).isEqualTo(partner.getOwnerName()),
-                () -> assertThat(found).isNotNull().isNotEmpty().get().extracting(PartnerMongoDB::getDocument).isEqualTo(partner.getDocument())
+                () -> assertThat(found).isNotNull().isNotEmpty().get().extracting(PartnerMongoDB::getDocument).isEqualTo(partner.getDocument()),
+                () -> assertThat(found).isNotNull().isNotEmpty().get().extracting(PartnerMongoDB::getCoverageArea).isEqualTo(partner.getCoverageArea()),
+                () -> assertThat(found).isNotNull().isNotEmpty().get().extracting(PartnerMongoDB::getAddress).isEqualTo(partner.getAddress())
         );
     }
 

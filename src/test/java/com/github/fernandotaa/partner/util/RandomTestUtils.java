@@ -79,13 +79,11 @@ final public class RandomTestUtils {
         for (int i = 0; i < integer(1, 5); i++) {
             var polygon = new ArrayList<List<List<Double>>>();
             coordinates.add(polygon);
-            for (int j = 0; j < integer(1, 3); j++) {
-                var lineString = new ArrayList<List<Double>>();
-                polygon.add(lineString);
-                for (int k = 0; k < integer(4, 20); k++) {
-                    var point = List.of(doublePrecision(180D, -180D), doublePrecision(90D, -90D));
-                    lineString.add(point);
-                }
+            var lineString = new ArrayList<List<Double>>();
+            polygon.add(lineString);
+            for (int k = 0; k < integer(4, 20); k++) {
+                var point = List.of(doublePrecision(180D, -180D), doublePrecision(90D, -90D));
+                lineString.add(point);
             }
         }
         return new GeoJsonMultiPolygon(coordinates);
@@ -109,9 +107,6 @@ final public class RandomTestUtils {
         var polygons = new ArrayList<GeoJsonPolygon>();
         for (int i = 0; i < integer(1, 5); i++) {
             var geoJsonPolygon = new GeoJsonPolygon(generateListOfPoints());
-            for (int j = 0; j < integer(0, 2); j++) {
-                geoJsonPolygon.withInnerRing(generateListOfPoints());
-            }
             polygons.add(geoJsonPolygon);
         }
         return new org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon(polygons);

@@ -1,5 +1,6 @@
 package com.github.fernandotaa.partner.library.geojson;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -12,6 +13,7 @@ import java.util.List;
  */
 @Getter
 @ToString
+@EqualsAndHashCode
 public class GeoJsonMultiPolygon extends GeoJson {
     private List<List<List<List<Double>>>> coordinates;
 

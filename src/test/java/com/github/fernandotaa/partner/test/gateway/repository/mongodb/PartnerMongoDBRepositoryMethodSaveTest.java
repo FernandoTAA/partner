@@ -33,7 +33,9 @@ public class PartnerMongoDBRepositoryMethodSaveTest {
                 () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getId).isNotNull(),
                 () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getTradingName).isEqualTo(partner.getTradingName()),
                 () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getOwnerName).isEqualTo(partner.getOwnerName()),
-                () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getDocument).isEqualTo(partner.getDocument())
+                () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getDocument).isEqualTo(partner.getDocument()),
+                () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getCoverageArea).isEqualTo(partner.getCoverageArea()),
+                () -> assertThat(saved).isNotNull().extracting(PartnerMongoDB::getAddress).isEqualTo(partner.getAddress())
         );
     }
 }

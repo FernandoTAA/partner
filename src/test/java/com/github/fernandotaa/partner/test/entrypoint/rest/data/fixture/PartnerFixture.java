@@ -34,6 +34,8 @@ public class PartnerFixture implements TemplateLoader {
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", function(Faker.instance().name()::name));
                     add("document", function(RandomTestUtils::document));
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
+                    add("address", function(RandomTestUtils::point));
                 }});
     }
 
@@ -44,6 +46,8 @@ public class PartnerFixture implements TemplateLoader {
                     add("tradingName", function(Faker.instance().company()::name));
                     add("ownerName", function(Faker.instance().name()::name));
                     add("document", function(RandomTestUtils::document));
+                    add("coverageArea", function(RandomTestUtils::multiPolygon));
+                    add("address", function(RandomTestUtils::point));
                 }});
     }
 

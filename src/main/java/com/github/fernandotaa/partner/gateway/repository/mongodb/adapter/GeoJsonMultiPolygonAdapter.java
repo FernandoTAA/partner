@@ -1,6 +1,7 @@
 package com.github.fernandotaa.partner.gateway.repository.mongodb.adapter;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.geo.GeoJsonLineString;
 import org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon;

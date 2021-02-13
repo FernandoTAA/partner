@@ -49,7 +49,9 @@ public class PartnerGetterByIdUseCaseTest {
                 () -> assertThat(found.getPartner()).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getId).isNotNull(),
                 () -> assertThat(found.getPartner()).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getTradingName).isEqualTo(output.getPartner().get().getTradingName()),
                 () -> assertThat(found.getPartner()).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getOwnerName).isEqualTo(output.getPartner().get().getOwnerName()),
-                () -> assertThat(found.getPartner()).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getDocument).isEqualTo(output.getPartner().get().getDocument())
+                () -> assertThat(found.getPartner()).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getDocument).isEqualTo(output.getPartner().get().getDocument()),
+                () -> assertThat(found.getPartner()).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getCoverageArea).isEqualTo(output.getPartner().get().getCoverageArea()),
+                () -> assertThat(found.getPartner()).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getAddress).isEqualTo(output.getPartner().get().getAddress())
         );
     }
 
