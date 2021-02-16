@@ -9,15 +9,18 @@ import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJson
 import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJsonPointAdapter;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.data.PartnerMongoDB;
 import com.github.fernandotaa.partner.util.RandomTestUtils;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 
@@ -29,6 +32,9 @@ public class PartnerGatewayRepositoryMethodFindByIdTest {
 
     @MockBean
     PartnerMongoDBRepository partnerMongoDBRepository;
+
+    @MockBean
+    MongoTemplate mongoTemplate;
 
     @BeforeAll
     static void beforeAll() {
@@ -43,7 +49,7 @@ public class PartnerGatewayRepositoryMethodFindByIdTest {
         doReturn(Optional.of(partner)).when(partnerMongoDBRepository).findById(id);
 
         var found = partnerGatewayRepository.findById(id);
-        Assertions.assertAll(
+        assertAll(
                 () -> assertThat(found).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getId).isNotNull().isEqualTo(partner.getId()),
                 () -> assertThat(found).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getTradingName).isNotNull().isEqualTo(partner.getTradingName()),
                 () -> assertThat(found).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getOwnerName).isNotNull().isEqualTo(partner.getOwnerName()),

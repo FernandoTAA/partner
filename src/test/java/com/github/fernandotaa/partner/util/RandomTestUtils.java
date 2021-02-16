@@ -115,7 +115,7 @@ final public class RandomTestUtils {
     private static List<Point> generateListOfPoints() {
         var lineString = new ArrayList<Point>();
         for (int j = 0; j < integer(4, 20); j++) {
-            var point = new Point(doublePrecision(180D, -180D), doublePrecision(90D, -90D));
+            var point = new Point(doublePrecision(-180D, 180D), doublePrecision(-90D, 90D));
             lineString.add(point);
         }
         return lineString;

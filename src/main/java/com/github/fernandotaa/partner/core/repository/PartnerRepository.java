@@ -2,6 +2,7 @@ package com.github.fernandotaa.partner.core.repository;
 
 import com.github.fernandotaa.partner.core.usecase.entity.Partner;
 import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
+import com.github.fernandotaa.partner.library.geojson.GeoJsonPoint;
 
 import java.util.Optional;
 
@@ -25,4 +26,12 @@ public interface PartnerRepository {
      * @return - {@link Partner} found.
      */
     Optional<Partner> findById(String id);
+
+    /**
+     * Return the nearest {@link Partner} in coverage area by {@link GeoJsonPoint}.
+     *
+     * @param destination - {@link GeoJsonPoint}
+     * @return - List of @{@link Partner}
+     */
+    Optional<Partner> findNearestInCoverageAreaByLocation(GeoJsonPoint destination);
 }

@@ -14,6 +14,7 @@ import org.junit.jupiter.api.*;
 import org.mockito.invocation.InvocationOnMock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,6 +30,9 @@ public class PartnerGatewayRepositoryMethodSaveTest {
 
     @MockBean
     PartnerMongoDBRepository partnerMongoDBRepository;
+
+    @MockBean
+    MongoTemplate mongoTemplate;
 
     @BeforeAll
     static void beforeAll() {

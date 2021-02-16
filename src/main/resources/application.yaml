@@ -3,3 +3,6 @@ spring:
     name: Partner
   profiles:
     active: local
+  data:
+    mongodb:
+      auto-index-creation: true

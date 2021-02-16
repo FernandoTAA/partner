@@ -19,6 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 
@@ -44,7 +45,7 @@ public class PartnerGetterByIdUseCaseTest {
         doReturn(output.getPartner()).when(partnerRepository).findById(id);
         var input = new PartnerGetterByIdInputValues(id);
         var found = partnerGetterByIdUseCase.execute(input);
-        Assertions.assertAll(
+        assertAll(
                 () -> assertThat(found).isNotNull(),
                 () -> assertThat(found.getPartner()).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getId).isNotNull(),
                 () -> assertThat(found.getPartner()).isNotNull().isNotEmpty().get().isNotNull().extracting(Partner::getTradingName).isEqualTo(output.getPartner().get().getTradingName()),
@@ -62,7 +63,7 @@ public class PartnerGetterByIdUseCaseTest {
         var id = RandomTestUtils.uuid();
         var input = new PartnerGetterByIdInputValues(id);
         var notFound = partnerGetterByIdUseCase.execute(input);
-        Assertions.assertAll(
+        assertAll(
                 () -> assertThat(notFound).isNotNull(),
                 () -> assertThat(notFound.getPartner()).isNotNull().isEmpty()
         );

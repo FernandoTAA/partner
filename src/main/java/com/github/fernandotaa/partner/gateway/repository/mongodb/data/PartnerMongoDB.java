@@ -29,7 +29,6 @@ public class PartnerMongoDB {
     private String tradingName;
     private String ownerName;
     private String document;
-    @GeoSpatialIndexed
     private GeoJsonMultiPolygon coverageArea;
     @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
     private GeoJsonPoint address;
