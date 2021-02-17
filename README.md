@@ -1,6 +1,6 @@
 # Partner
 
-Partner is a API system that manages partner saving, getting by id and geo location.
+Partner is a API system that manages partner saving, getting by id and geolocation.
 
 ## Requisite
 
