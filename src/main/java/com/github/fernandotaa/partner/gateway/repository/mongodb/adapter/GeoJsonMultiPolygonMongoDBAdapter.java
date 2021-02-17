@@ -1,7 +1,7 @@
 package com.github.fernandotaa.partner.gateway.repository.mongodb.adapter;
 
-import lombok.AllArgsConstructor;
 import com.github.fernandotaa.partner.library.geojson.GeoJsonMultiPolygon;
+import lombok.AllArgsConstructor;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
 

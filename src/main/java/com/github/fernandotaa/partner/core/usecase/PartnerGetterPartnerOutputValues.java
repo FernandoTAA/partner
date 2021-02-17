@@ -1,6 +1,5 @@
-package com.github.fernandotaa.partner.core.usecase.getterbyid;
+package com.github.fernandotaa.partner.core.usecase;
 
-import com.github.fernandotaa.partner.core.usecase.OutputValues;
 import com.github.fernandotaa.partner.core.usecase.entity.Partner;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +11,6 @@ import java.util.Optional;
  */
 @Getter
 @AllArgsConstructor
-public class PartnerGetterByIdOutputValues implements OutputValues {
+public class PartnerGetterPartnerOutputValues implements OutputValues {
     private Optional<Partner> partner;
 }

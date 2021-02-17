@@ -54,6 +54,12 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         loadErrorForInvalidPartnerBatchRequestCoverageAreaNull();
         loadErrorForInvalidPartnerBatchRequestDocumentEmpty();
         loadInvalidPartnerBatchRequestDocumentDuplicated();
+        loadErrorForInvalidPointLatitudeRequired();
+        loadErrorForInvalidPointLongitudeRequired();
+        loadErrorForInvalidPointLongitudeMax();
+        loadErrorForInvalidPointLongitudeMin();
+        loadErrorForInvalidPointLatitudeMax();
+        loadErrorForInvalidPointLatitudeMin();
     }
 
     private void loadValidPartnerRequest() {
@@ -339,6 +345,64 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                     add("field", "pdvs[0].coverageArea");
                     add("value", "null");
                     add("message", "must not be null");
+                }});
+    }
+
+    private void loadErrorForInvalidPointLatitudeRequired() {
+        Fixture.of(Error.class)
+                .addTemplate("invalid_latitude_required", new Rule() {{
+                    add("scope", "path");
+                    add("field", "latitude");
+                    add("message", "latitude parameter is missing");
+                }});
+    }
+
+    private void loadErrorForInvalidPointLongitudeMax() {
+        Fixture.of(Error.class)
+                .addTemplate("invalid_longitude_max", new Rule() {{
+                    add("scope", "path");
+                    add("field", "getByPoint.longitude");
+                    add("value", "180.1");
+                    add("message", "must be less than or equal to 180");
+                }});
+    }
+
+    private void loadErrorForInvalidPointLongitudeMin() {
+        Fixture.of(Error.class)
+                .addTemplate("invalid_longitude_min", new Rule() {{
+                    add("scope", "path");
+                    add("field", "getByPoint.longitude");
+                    add("value", "-180.1");
+                    add("message", "must be greater than or equal to -180");
+                }});
+    }
+
+    private void loadErrorForInvalidPointLongitudeRequired() {
+        Fixture.of(Error.class)
+                .addTemplate("invalid_longitude_required", new Rule() {{
+                    add("scope", "path");
+                    add("field", "longitude");
+                    add("message", "longitude parameter is missing");
+                }});
+    }
+
+    private void loadErrorForInvalidPointLatitudeMax() {
+        Fixture.of(Error.class)
+                .addTemplate("invalid_latitude_max", new Rule() {{
+                    add("scope", "path");
+                    add("field", "getByPoint.latitude");
+                    add("value", "90.1");
+                    add("message", "must be less than or equal to 90");
+                }});
+    }
+
+    private void loadErrorForInvalidPointLatitudeMin() {
+        Fixture.of(Error.class)
+                .addTemplate("invalid_latitude_min", new Rule() {{
+                    add("scope", "path");
+                    add("field", "getByPoint.latitude");
+                    add("value", "-90.1");
+                    add("message", "must be greater than or equal to -90");
                 }});
     }
 

@@ -41,6 +41,40 @@ paths:
       externalDocs:
         description: Learn more about partner operation provided by this API
         url: https://github.com/FernandoTAA/partner/wiki/%5BAPI%5D-POST-partner-(v1)
+    get:
+      tags:
+        - Partner
+      summary: Get a partner by point
+      description: >
+        This endpoint get a partner by point
+      operationId: getByPoint
+      parameters:
+        - name: longitude
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: latitude
+          in: query
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerResponse'
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          description: Internal Server Error
+      externalDocs:
+        description: Learn more about partner operation provided by this API
+        url: https://github.com/FernandoTAA/partner/wiki/%5BAPI%5D-GET-partner-by-id-(v1)
   /partner/{id}/:
     get:
       tags:

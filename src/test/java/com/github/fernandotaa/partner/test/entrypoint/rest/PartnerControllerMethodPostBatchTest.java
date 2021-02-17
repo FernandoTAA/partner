@@ -4,6 +4,7 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdUseCase;
+import com.github.fernandotaa.partner.core.usecase.getterbypoint.PartnerGetterByPointUseCase;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverInputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverOutputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverUseCase;
@@ -47,6 +48,9 @@ public class PartnerControllerMethodPostBatchTest {
 
     @MockBean
     PartnerGetterByIdUseCase partnerGetterByIdUseCase;
+
+    @MockBean
+    PartnerGetterByPointUseCase partnerGetterByPointUseCase;
 
     @BeforeAll
     static void beforeAll() {

@@ -3,10 +3,7 @@ package com.github.fernandotaa.partner.gateway.repository.mongodb;
 import com.github.fernandotaa.partner.core.usecase.entity.Partner;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.data.PartnerMongoDB;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * Repository to manage {@link Partner} data in MongoDB.

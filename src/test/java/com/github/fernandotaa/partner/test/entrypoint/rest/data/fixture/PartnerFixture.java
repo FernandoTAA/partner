@@ -3,9 +3,9 @@ package com.github.fernandotaa.partner.test.entrypoint.rest.data.fixture;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
+import com.github.fernandotaa.partner.core.usecase.PartnerGetterPartnerOutputValues;
 import com.github.fernandotaa.partner.core.usecase.entity.Partner;
 import com.github.fernandotaa.partner.core.usecase.entity.PartnerBase;
-import com.github.fernandotaa.partner.core.usecase.getterbyid.PartnerGetterByIdOutputValues;
 import com.github.fernandotaa.partner.core.usecase.saver.PartnerSaverInputValues;
 import com.github.fernandotaa.partner.library.geojson.GeoJsonMultiPolygon;
 import com.github.fernandotaa.partner.library.geojson.GeoJsonPoint;
@@ -76,14 +76,14 @@ public class PartnerFixture implements TemplateLoader {
     }
 
     private void loadValidPartnerGetterByIdOutputValues() {
-        Fixture.of(PartnerGetterByIdOutputValues.class)
+        Fixture.of(PartnerGetterPartnerOutputValues.class)
                 .addTemplate("valid", new Rule() {{
                     add("partner", Optional.of(Fixture.from(Partner.class).gimme("valid")));
                 }});
     }
 
     private void loadInvalidPartnerGetterByIdOutputValuesEmpty() {
-        Fixture.of(PartnerGetterByIdOutputValues.class)
+        Fixture.of(PartnerGetterPartnerOutputValues.class)
                 .addTemplate("empty", new Rule() {{
                     add("partner", Optional.empty());
                 }});

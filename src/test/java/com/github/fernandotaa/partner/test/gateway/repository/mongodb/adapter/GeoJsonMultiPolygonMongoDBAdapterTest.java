@@ -3,11 +3,10 @@ package com.github.fernandotaa.partner.test.gateway.repository.mongodb.adapter;
 
 import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJsonMultiPolygonAdapter;
 import com.github.fernandotaa.partner.gateway.repository.mongodb.adapter.GeoJsonMultiPolygonMongoDBAdapter;
-
 import com.github.fernandotaa.partner.util.RandomTestUtils;
-import org.springframework.data.geo.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.geo.GeoJsonLineString;
 import org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon;
 import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
