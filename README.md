@@ -7,7 +7,7 @@ Partner is a API system that manages partner saving, getting by id and geolocati
 - docker
 - docker-compose
 
-# How to run
+## How to run
 
 Considering the environment is configured with docker-compose, it is necessary a simple commando below.
 Run it in `docker-compose` directory.
@@ -16,6 +16,6 @@ Run it in `docker-compose` directory.
 docker-compose up
 ```
 
-# Swagger
+## Swagger
 
 http://localhost:8080/swagger-ui/
