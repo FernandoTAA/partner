@@ -40,7 +40,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
     private void loadValidPartnerBatchRequest() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("valid", new Rule() {{
-                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(integer(1, 20), "valid"));
+                    add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(integer(1, 20), "valid")));
                 }});
     }
 
@@ -64,7 +64,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_ownerName_null", new Rule() {{
                     final int bound = 20;
-                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_ownerName_null"));
+                    add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(1, "invalid_ownerName_null")));
                 }});
     }
 
@@ -72,7 +72,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_ownerName_empty", new Rule() {{
                     final int bound = 20;
-                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_ownerName_empty"));
+                    add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(1, "invalid_ownerName_empty")));
                 }});
     }
 
@@ -80,7 +80,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_tradingName_null", new Rule() {{
                     final int bound = 20;
-                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_tradingName_null"));
+                    add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(1, "invalid_tradingName_null")));
                 }});
     }
 
@@ -88,7 +88,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_tradingName_empty", new Rule() {{
                     final int bound = 20;
-                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_tradingName_empty"));
+                    add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(1, "invalid_tradingName_empty")));
                 }});
     }
 
@@ -96,7 +96,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_document_null", new Rule() {{
                     final int bound = 20;
-                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_document_null"));
+                    add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(1, "invalid_document_null")));
                 }});
     }
 
@@ -104,7 +104,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_document_empty", new Rule() {{
                     final int bound = 20;
-                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_document_empty"));
+                    add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(1, "invalid_document_empty")));
                 }});
     }
 
@@ -112,7 +112,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_address_null", new Rule() {{
                     final int bound = 20;
-                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_address_null"));
+                    add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(1, "invalid_address_null")));
                 }});
     }
 
@@ -120,7 +120,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_coverageArea_null", new Rule() {{
                     final int bound = 20;
-                    add("pdvs", Fixture.from(PartnerRequest.class).gimme(1, "invalid_coverageArea_null"));
+                    add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(1, "invalid_coverageArea_null")));
                 }});
     }
 
