@@ -6,6 +6,9 @@ import com.github.fernandotaa.partner.library.geojson.GeoJsonPoint;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * Representation of a unique Partner in response.
+ */
 @Getter
 @AllArgsConstructor
 public class PartnerResponse {
@@ -16,7 +19,12 @@ public class PartnerResponse {
     private GeoJsonMultiPolygon coverageArea;
     private GeoJsonPoint address;
 
-
+    /**
+     * Factory to create {@link PartnerResponse} from {@link Partner}.
+     *
+     * @param partner - {@link Partner}
+     * @return - {@link PartnerResponse}
+     */
     public static PartnerResponse from(Partner partner) {
         return new PartnerResponse(
                 partner.getId(),

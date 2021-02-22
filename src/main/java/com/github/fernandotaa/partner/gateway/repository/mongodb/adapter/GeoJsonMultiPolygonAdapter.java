@@ -17,6 +17,11 @@ import java.util.Objects;
 public class GeoJsonMultiPolygonAdapter {
     private final GeoJsonMultiPolygon multiPolygon;
 
+    /**
+     * Adapt object from {@link GeoJsonMultiPolygon} to {@link com.github.fernandotaa.partner.library.geojson.GeoJsonMultiPolygon}.
+     *
+     * @return - {@link com.github.fernandotaa.partner.library.geojson.GeoJsonMultiPolygon}
+     */
     public com.github.fernandotaa.partner.library.geojson.GeoJsonMultiPolygon adapt() {
         if (Objects.isNull(multiPolygon)) {
             return null;

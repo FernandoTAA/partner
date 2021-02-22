@@ -13,6 +13,16 @@ import lombok.NoArgsConstructor;
 public class Partner extends PartnerBase {
     private String id;
 
+    /**
+     * Construction with all fields.
+     *
+     * @param id - Identification
+     * @param tradingName - Trading Name
+     * @param ownerName - Owner Name
+     * @param document - Document
+     * @param coverageArea - Coverage Area
+     * @param address - Address
+     */
     public Partner(
             String id,
             String tradingName,

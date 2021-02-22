@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 
 import static java.text.MessageFormat.format;
 
+/**
+ * Validator to avoid repeatable value in {@link Collection}.
+ */
 public class NotRepeatableValidator implements ConstraintValidator<NotRepeatable, Collection<?>> {
     private String field;
     private String message;

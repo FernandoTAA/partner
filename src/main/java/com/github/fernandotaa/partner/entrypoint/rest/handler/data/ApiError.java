@@ -6,6 +6,9 @@ import lombok.Getter;
 
 import java.util.List;
 
+/**
+ * API Error representation.
+ */
 @Getter
 @AllArgsConstructor
 public class ApiError {

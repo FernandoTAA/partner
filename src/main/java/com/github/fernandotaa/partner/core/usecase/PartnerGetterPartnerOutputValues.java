@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.util.Optional;
 
 /**
- * {@link OutputValues} for {@link PartnerGetterByIdUseCase}
+ * {@link OutputValues} for {@link PartnerGetterPartnerOutputValues}
  */
 @Getter
 @AllArgsConstructor

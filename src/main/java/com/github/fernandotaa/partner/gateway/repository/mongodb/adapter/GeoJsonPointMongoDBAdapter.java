@@ -12,6 +12,11 @@ import java.util.Objects;
 public class GeoJsonPointMongoDBAdapter {
     private final GeoJsonPoint point;
 
+    /**
+     * Adapt object from {@link GeoJsonPoint} to {@link org.springframework.data.mongodb.core.geo.GeoJsonPoint}.
+     *
+     * @return - {@link org.springframework.data.mongodb.core.geo.GeoJsonPoint}
+     */
     public org.springframework.data.mongodb.core.geo.GeoJsonPoint adapt() {
         if (Objects.isNull(point)) {
             return null;

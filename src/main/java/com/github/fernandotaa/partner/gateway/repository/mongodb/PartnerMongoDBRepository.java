@@ -10,38 +10,4 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PartnerMongoDBRepository extends MongoRepository<PartnerMongoDB, String> {
-//db.getCollection('partner').createIndex( { "address" : "2dsphere" } )
-
-//db.getCollection('partner').aggregate([
-//    {
-//        $geoNear: {
-//            near: {
-//                type: "Point",
-//                        coordinates: [ -43.297317, -23.013518]
-//            },
-//            distanceField: "distance",
-//                    spherical: true
-//        }
-//    },
-//    {
-//        $match : {
-//            coverageArea: {
-//                $geoIntersects: {
-//                    $geometry: {
-//                        type: "Point",
-//                                coordinates: [ -43.297337, -23.013538]
-//                    }
-//                }
-//            }
-//        }
-//    },
-//    {
-//        $sort: {
-//            distance: -1
-//        }
-//    },
-//    {
-//        $limit: 1
-//    }
-//]);
 }

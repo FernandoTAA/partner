@@ -17,6 +17,11 @@ import java.util.stream.Collectors;
 public class GeoJsonMultiPolygonMongoDBAdapter {
     private final GeoJsonMultiPolygon multiPolygon;
 
+    /**
+     * Adapt object from {@link GeoJsonMultiPolygon} to {@link org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon}.
+     *
+     * @return - {@link org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon}
+     */
     public org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon adapt() {
         if (Objects.isNull(multiPolygon)) {
             return null;

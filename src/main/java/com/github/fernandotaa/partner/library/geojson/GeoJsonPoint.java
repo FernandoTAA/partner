@@ -16,10 +16,19 @@ import java.util.List;
 public class GeoJsonPoint extends GeoJson {
     private List<Double> coordinates;
 
+    /**
+     * Default constructor specifying type as "Point".
+     */
     public GeoJsonPoint() {
         super("Point");
     }
 
+    /**
+     * Construct specifying {@code longitude} and {@code latitude}.
+     *
+     * @param longitude - Interval from -180 to 180
+     * @param latitude - Interval from -90 to 90
+     */
     public GeoJsonPoint(Double longitude, Double latitude) {
         this();
         this.coordinates = List.of(longitude, latitude);

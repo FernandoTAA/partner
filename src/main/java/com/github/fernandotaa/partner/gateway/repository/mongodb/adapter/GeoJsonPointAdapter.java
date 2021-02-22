@@ -12,6 +12,11 @@ import java.util.Objects;
 public class GeoJsonPointAdapter {
     private final GeoJsonPoint point;
 
+    /**
+     * Adpat object from {@link GeoJsonPoint} to {@link com.github.fernandotaa.partner.library.geojson.GeoJsonPoint}
+     *
+     * @return - {@link com.github.fernandotaa.partner.library.geojson.GeoJsonPoint}
+     */
     public com.github.fernandotaa.partner.library.geojson.GeoJsonPoint adapt() {
         if (Objects.isNull(point)) {
             return null;

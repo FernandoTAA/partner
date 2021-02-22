@@ -33,6 +33,12 @@ public class PartnerMongoDB {
     @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
     private GeoJsonPoint address;
 
+    /**
+     * Factory to create {@link PartnerMongoDB} from {@link PartnerBase}.
+     *
+     * @param partner - {@link PartnerBase}
+     * @return - {@link PartnerMongoDB}
+     */
     public static PartnerMongoDB from(PartnerBase partner) {
         var geoJsonMultiPolygonMongoDBAdapter = new GeoJsonMultiPolygonMongoDBAdapter(partner.getCoverageArea());
         var geoJsonPointMongoDBAdapter = new GeoJsonPointMongoDBAdapter(partner.getAddress());
@@ -46,6 +52,12 @@ public class PartnerMongoDB {
         );
     }
 
+    /**
+     * Convert {@link Partner} to {@link PartnerMongoDB}.
+     *
+     * @param partner - {@link PartnerMongoDB}
+     * @return - {@link Partner}
+     */
     public static Partner toEntity(PartnerMongoDB partner) {
         var geoJsonMultiPolygonAdapter = new GeoJsonMultiPolygonAdapter(partner.getCoverageArea());
         var geoJsonPointAdapter = new GeoJsonPointAdapter(partner.getAddress());

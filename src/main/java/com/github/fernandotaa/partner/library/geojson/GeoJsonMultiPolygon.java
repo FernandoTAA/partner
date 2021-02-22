@@ -16,10 +16,18 @@ import java.util.List;
 public class GeoJsonMultiPolygon extends GeoJson {
     private List<List<List<List<Double>>>> coordinates;
 
+    /**
+     * Default constructor specifying type as "MultiPolygon".
+     */
     public GeoJsonMultiPolygon() {
         super("MultiPolygon");
     }
 
+    /**
+     * Construct specifying MultiPolygon coordinates.
+     *
+     * @param coordinates - MultiPolygon coordinates
+     */
     public GeoJsonMultiPolygon(List<List<List<List<Double>>>> coordinates) {
         this();
         this.coordinates = coordinates;
