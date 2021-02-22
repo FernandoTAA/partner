@@ -1,4 +1,4 @@
-package com.github.fernandotaa.partner.test.entrypoint.rest.data.fixture;
+package com.github.fernandotaa.partner.test.fixture;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
@@ -19,74 +19,13 @@ import static com.github.fernandotaa.partner.util.FixtureUtils.function;
 import static com.github.fernandotaa.partner.util.RandomTestUtils.integer;
 
 /**
- * Fixture template loader for {@link PartnerFixture} to use in Partner Tests;
+ * Fixture template loader for {@link GeoJsonPoint} and {@link GeoJsonMultiPolygon} to use in Partner Tests;
  */
-public class PartnerFixture implements TemplateLoader {
+public class GeoJsonFixture implements TemplateLoader {
     @Override
     public void load() {
-        loadValidPartnerBase();
-        loadValidPartner();
-        loadInCoverageAreaPartnerBase();
-        loadValidPartnerSaverInputValues();
-        loadValidPartnerGetterByIdOutputValues();
-        loadInvalidPartnerGetterByIdOutputValuesEmpty();
         loadInCoverageAreaGeoJsonPoint();
         loadOutOfCoverageAreaGeoJsonPoint();
-    }
-
-    private void loadValidPartnerBase() {
-        Fixture.of(PartnerBase.class)
-                .addTemplate("valid", new Rule() {{
-                    add("tradingName", function(Faker.instance().company()::name));
-                    add("ownerName", function(Faker.instance().name()::name));
-                    add("document", function(RandomTestUtils::document));
-                    add("coverageArea", function(RandomTestUtils::multiPolygon));
-                    add("address", function(RandomTestUtils::point));
-                }});
-    }
-
-    private void loadValidPartner() {
-        Fixture.of(Partner.class)
-                .addTemplate("valid", new Rule() {{
-                    add("id", function(RandomTestUtils::uuid));
-                    add("tradingName", function(Faker.instance().company()::name));
-                    add("ownerName", function(Faker.instance().name()::name));
-                    add("document", function(RandomTestUtils::document));
-                    add("coverageArea", function(RandomTestUtils::multiPolygon));
-                    add("address", function(RandomTestUtils::point));
-                }});
-    }
-
-    private void loadInCoverageAreaPartnerBase() {
-        Fixture.of(PartnerBase.class)
-                .addTemplate("in_coverage_area", new Rule() {{
-                    add("tradingName", function(Faker.instance().company()::name));
-                    add("ownerName", function(Faker.instance().name()::name));
-                    add("document", function(RandomTestUtils::document));
-                    add("coverageArea", generateGeoJsonMultiPolygonCoverageArea());
-                    add("address", function(PartnerFixture.this::generateGeoJsonPointAddressInCoverageArea));
-                }});
-    }
-
-    private void loadValidPartnerSaverInputValues() {
-        Fixture.of(PartnerSaverInputValues.class)
-                .addTemplate("valid", new Rule() {{
-                    add("partners", Fixture.from(PartnerBase.class).gimme(integer(1, 20), "valid"));
-                }});
-    }
-
-    private void loadValidPartnerGetterByIdOutputValues() {
-        Fixture.of(PartnerGetterPartnerOutputValues.class)
-                .addTemplate("valid", new Rule() {{
-                    add("partner", Optional.of(Fixture.from(Partner.class).gimme("valid")));
-                }});
-    }
-
-    private void loadInvalidPartnerGetterByIdOutputValuesEmpty() {
-        Fixture.of(PartnerGetterPartnerOutputValues.class)
-                .addTemplate("empty", new Rule() {{
-                    add("partner", Optional.empty());
-                }});
     }
 
     private void loadInCoverageAreaGeoJsonPoint() {
@@ -109,13 +48,13 @@ public class PartnerFixture implements TemplateLoader {
         return new GeoJsonPoint(longitude, latitude);
     }
 
-    private GeoJsonPoint generateGeoJsonPointAddressInCoverageArea() {
+    protected static GeoJsonPoint generateGeoJsonPointAddressInCoverageArea() {
         var longitude = -43.297337 + (RandomTestUtils.doublePrecision(-20D, 20D) * 0.000001);
         var latitude = -23.013538 + (RandomTestUtils.doublePrecision(-20D, 20D) * 0.000001);
         return new GeoJsonPoint(longitude, latitude);
     }
 
-    private GeoJsonMultiPolygon generateGeoJsonMultiPolygonCoverageArea() {
+    protected static GeoJsonMultiPolygon generateGeoJsonMultiPolygonCoverageArea() {
         List<List<List<List<Double>>>> coordinates = List.of(
                 List.of(
                         List.of(

@@ -1,4 +1,4 @@
-package com.github.fernandotaa.partner.test.entrypoint.rest.data.fixture;
+package com.github.fernandotaa.partner.test.fixture;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;

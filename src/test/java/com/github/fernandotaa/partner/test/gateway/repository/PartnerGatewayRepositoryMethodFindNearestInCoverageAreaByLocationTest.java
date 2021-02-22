@@ -33,7 +33,7 @@ public class PartnerGatewayRepositoryMethodFindNearestInCoverageAreaByLocationTe
 
     @BeforeAll
     static void beforeAll() {
-        FixtureFactoryLoader.loadTemplates("com.github.fernandotaa.partner.test.entrypoint.rest.data.fixture");
+        FixtureFactoryLoader.loadTemplates("com.github.fernandotaa.partner.test.fixture");
     }
 
     @BeforeEach
