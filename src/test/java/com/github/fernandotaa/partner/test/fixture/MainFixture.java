@@ -86,6 +86,6 @@ public class MainFixture implements TemplateLoader {
         ErrorFixture.loadErrorForInvalidPointLongitudeMax();
         ErrorFixture.loadErrorForInvalidPointLongitudeMin();
         ErrorFixture.loadErrorForInvalidPointLatitudeMax();
-        ErrorFixture.loadErrorForInvaltidPointLatitudeMin();
+        ErrorFixture.loadErrorForInvalidPointLatitudeMin();
     }
 }
