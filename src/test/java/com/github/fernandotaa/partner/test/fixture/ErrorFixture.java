@@ -15,30 +15,10 @@ import java.util.List;
 import static com.github.fernandotaa.partner.util.RandomTestUtils.integer;
 
 /**
- * Fixture template loader for {@link PartnerBatchRequest} to use in Partner Tests;
+ * Static method to use in {@link MainFixture} for {@link PartnerBatchRequest} to use in Partner Tests;
  */
-public class ErrorFixture implements TemplateLoader {
-    @Override
-    public void load() {
-        loadErrorForInvalidPartnerBatchRequestPdvNull();
-        loadErrorForInvalidPartnerBatchRequestPdvEmpty();
-        loadErrorForInvalidPartnerBatchRequestTradingNameNull();
-        loadErrorForInvalidPartnerBatchRequestTradingNameEmpty();
-        loadErrorForInvalidPartnerBatchRequestOwnerNameNull();
-        loadErrorForInvalidPartnerBatchRequestOwnerNameEmpty();
-        loadErrorForInvalidPartnerBatchRequestDocumentNull();
-        loadErrorForInvalidPartnerBatchRequestAddressNull();
-        loadErrorForInvalidPartnerBatchRequestCoverageAreaNull();
-        loadErrorForInvalidPartnerBatchRequestDocumentEmpty();
-        loadErrorForInvalidPointLatitudeRequired();
-        loadErrorForInvalidPointLongitudeRequired();
-        loadErrorForInvalidPointLongitudeMax();
-        loadErrorForInvalidPointLongitudeMin();
-        loadErrorForInvalidPointLatitudeMax();
-        loadErrorForInvalidPointLatitudeMin();
-    }
-
-    private void loadErrorForInvalidPartnerBatchRequestPdvNull() {
+public class ErrorFixture {
+    static void loadErrorForInvalidPartnerBatchRequestPdvNull() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_pdvs_null", new Rule() {{
                     add("scope", "attribute");
@@ -48,7 +28,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestPdvEmpty() {
+    static void loadErrorForInvalidPartnerBatchRequestPdvEmpty() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_pdvs_empty", new Rule() {{
                     add("scope", "attribute");
@@ -58,7 +38,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestTradingNameNull() {
+    static void loadErrorForInvalidPartnerBatchRequestTradingNameNull() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_ownerName_null", new Rule() {{
                     add("scope", "attribute");
@@ -68,7 +48,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestTradingNameEmpty() {
+    static void loadErrorForInvalidPartnerBatchRequestTradingNameEmpty() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_ownerName_empty", new Rule() {{
                     add("scope", "attribute");
@@ -78,7 +58,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestOwnerNameNull() {
+    static void loadErrorForInvalidPartnerBatchRequestOwnerNameNull() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_tradingName_null", new Rule() {{
                     add("scope", "attribute");
@@ -88,7 +68,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestOwnerNameEmpty() {
+    static void loadErrorForInvalidPartnerBatchRequestOwnerNameEmpty() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_tradingName_empty", new Rule() {{
                     add("scope", "attribute");
@@ -98,7 +78,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestDocumentNull() {
+    static void loadErrorForInvalidPartnerBatchRequestDocumentNull() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_document_null", new Rule() {{
                     add("scope", "attribute");
@@ -108,7 +88,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestDocumentEmpty() {
+    static void loadErrorForInvalidPartnerBatchRequestDocumentEmpty() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_document_empty", new Rule() {{
                     add("scope", "attribute");
@@ -118,7 +98,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestAddressNull() {
+    static void loadErrorForInvalidPartnerBatchRequestAddressNull() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_address_null", new Rule() {{
                     add("scope", "attribute");
@@ -128,7 +108,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestCoverageAreaNull() {
+    static void loadErrorForInvalidPartnerBatchRequestCoverageAreaNull() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_coverageArea_null", new Rule() {{
                     add("scope", "attribute");
@@ -138,7 +118,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPointLatitudeRequired() {
+    static void loadErrorForInvalidPointLatitudeRequired() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_latitude_required", new Rule() {{
                     add("scope", "path");
@@ -147,7 +127,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPointLongitudeMax() {
+    static void loadErrorForInvalidPointLongitudeMax() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_longitude_max", new Rule() {{
                     add("scope", "path");
@@ -157,7 +137,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPointLongitudeMin() {
+    static void loadErrorForInvalidPointLongitudeMin() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_longitude_min", new Rule() {{
                     add("scope", "path");
@@ -167,7 +147,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPointLongitudeRequired() {
+    static void loadErrorForInvalidPointLongitudeRequired() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_longitude_required", new Rule() {{
                     add("scope", "path");
@@ -176,7 +156,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPointLatitudeMax() {
+    static void loadErrorForInvalidPointLatitudeMax() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_latitude_max", new Rule() {{
                     add("scope", "path");
@@ -186,7 +166,7 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadErrorForInvalidPointLatitudeMin() {
+    static void loadErrorForInvalidPointLatitudeMin() {
         Fixture.of(Error.class)
                 .addTemplate("invalid_latitude_min", new Rule() {{
                     add("scope", "path");
@@ -207,3 +187,4 @@ public class ErrorFixture implements TemplateLoader {
                 }});
     }
 }
+

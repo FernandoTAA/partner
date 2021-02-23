@@ -13,7 +13,7 @@ Considering the environment is configured with docker-compose, it is necessary a
 Run it in `docker-compose` directory.
 
 ```shell
-docker-compose up
+docker-compose -f docker-compose.app.yaml -f docker-compose.yaml up
 ```
 
 ## Swagger

@@ -10,16 +10,10 @@ import com.github.javafaker.Faker;
 import static com.github.fernandotaa.partner.util.FixtureUtils.function;
 
 /**
- * Fixture template loader for {@link PartnerMongoDB} to use in Partner Tests;
+ * Static method to use in {@link MainFixture}  for {@link PartnerMongoDB} to use in Partner Tests;
  */
-public class PartnerMongoDBFixture implements TemplateLoader {
-    @Override
-    public void load() {
-        loadValidPartner();
-        loadSavedPartner();
-    }
-
-    private void loadValidPartner() {
+public class PartnerMongoDBFixture {
+    static void loadValidPartner() {
         Fixture.of(PartnerMongoDB.class)
                 .addTemplate("valid", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
@@ -30,7 +24,7 @@ public class PartnerMongoDBFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadSavedPartner() {
+    static void loadSavedPartner() {
         Fixture.of(PartnerMongoDB.class)
                 .addTemplate("saved", new Rule() {{
                     add("id", function(RandomTestUtils::uuid));

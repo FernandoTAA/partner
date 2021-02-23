@@ -18,33 +18,17 @@ import static com.github.fernandotaa.partner.util.FixtureUtils.function;
 import static com.github.fernandotaa.partner.util.RandomTestUtils.integer;
 
 /**
- * Fixture template loader for {@link PartnerBatchRequest} to use in Partner Tests;
+ * Static method to use in {@link MainFixture} for {@link PartnerBatchRequest} to use in Partner Tests;
  */
-public class PartnerBatchRequestFixture implements TemplateLoader {
-    @Override
-    public void load() {
-        loadValidPartnerBatchRequest();
-        loadInvalidPartnerBatchRequestPdvNull();
-        loadInvalidPartnerBatchRequestPdvEmpty();
-        loadInvalidPartnerBatchRequestTradingNameNull();
-        loadInvalidPartnerBatchRequestTradingNameEmpty();
-        loadInvalidPartnerBatchRequestOwnerNameNull();
-        loadInvalidPartnerBatchRequestOwnerNameEmpty();
-        loadInvalidPartnerBatchRequestDocumentNull();
-        loadInvalidPartnerBatchRequestDocumentEmpty();
-        loadInvalidPartnerBatchRequestAddressNull();
-        loadInvalidPartnerBatchRequestCoverageAreaNull();
-        loadInvalidPartnerBatchRequestDocumentDuplicated();
-    }
-
-    private void loadValidPartnerBatchRequest() {
+public class PartnerBatchRequestFixture {
+    static void loadValidPartnerBatchRequest() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("valid", new Rule() {{
                     add("pdvs", function(() -> Fixture.from(PartnerRequest.class).gimme(integer(1, 20), "valid")));
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestPdvNull() {
+    static void loadInvalidPartnerBatchRequestPdvNull() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_pdvs_null", new Rule() {{
                     final int bound = 20;
@@ -52,7 +36,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestPdvEmpty() {
+    static void loadInvalidPartnerBatchRequestPdvEmpty() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_pdvs_empty", new Rule() {{
                     final int bound = 20;
@@ -60,7 +44,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestTradingNameNull() {
+    static void loadInvalidPartnerBatchRequestTradingNameNull() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_ownerName_null", new Rule() {{
                     final int bound = 20;
@@ -68,7 +52,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestTradingNameEmpty() {
+    static void loadInvalidPartnerBatchRequestTradingNameEmpty() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_ownerName_empty", new Rule() {{
                     final int bound = 20;
@@ -76,7 +60,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestOwnerNameNull() {
+    static void loadInvalidPartnerBatchRequestOwnerNameNull() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_tradingName_null", new Rule() {{
                     final int bound = 20;
@@ -84,7 +68,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestOwnerNameEmpty() {
+    static void loadInvalidPartnerBatchRequestOwnerNameEmpty() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_tradingName_empty", new Rule() {{
                     final int bound = 20;
@@ -92,7 +76,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestDocumentNull() {
+    static void loadInvalidPartnerBatchRequestDocumentNull() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_document_null", new Rule() {{
                     final int bound = 20;
@@ -100,7 +84,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestDocumentEmpty() {
+    static void loadInvalidPartnerBatchRequestDocumentEmpty() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_document_empty", new Rule() {{
                     final int bound = 20;
@@ -108,7 +92,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestAddressNull() {
+    static void loadInvalidPartnerBatchRequestAddressNull() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_address_null", new Rule() {{
                     final int bound = 20;
@@ -116,7 +100,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerBatchRequestCoverageAreaNull() {
+    static void loadInvalidPartnerBatchRequestCoverageAreaNull() {
         Fixture.of(PartnerBatchRequest.class)
                 .addTemplate("invalid_coverageArea_null", new Rule() {{
                     final int bound = 20;
@@ -125,7 +109,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
     }
 
     @SneakyThrows
-    private void loadInvalidPartnerBatchRequestDocumentDuplicated() {
+    static void loadInvalidPartnerBatchRequestDocumentDuplicated() {
         PartnerRequest partner = Fixture.from(PartnerRequest.class).gimme("valid");
         var pdvs = List.of(BeanUtils.cloneBean(partner), BeanUtils.cloneBean(partner));
         Fixture.of(PartnerBatchRequest.class)
@@ -136,7 +120,7 @@ public class PartnerBatchRequestFixture implements TemplateLoader {
         loadErrorForInvalidPartnerBatchRequestDocumentDuplicated(partner.getDocument(), pdvs);
     }
 
-    private void loadErrorForInvalidPartnerBatchRequestDocumentDuplicated(String document, List<Object> pdvs) {
+    private static void loadErrorForInvalidPartnerBatchRequestDocumentDuplicated(String document, List<Object> pdvs) {
         var message = MessageFormat.format("must not be repeatable values: {0}", document);
         Fixture.of(Error.class)
                 .addTemplate("invalid_document_duplicated", new Rule() {{

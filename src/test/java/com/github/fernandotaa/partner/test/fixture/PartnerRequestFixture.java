@@ -10,23 +10,10 @@ import com.github.javafaker.Faker;
 import static com.github.fernandotaa.partner.util.FixtureUtils.function;
 
 /**
- * Fixture template loader for {@link PartnerRequest} to use in Partner Tests;
+ * Static method to use in {@link MainFixture} for {@link PartnerRequest} to use in Partner Tests;
  */
-public class PartnerRequestFixture implements TemplateLoader {
-    @Override
-    public void load() {
-        loadValidPartnerRequest();
-        loadInvalidPartnerRequestTradingNameNull();
-        loadInvalidPartnerRequestTradingNameEmpty();
-        loadInvalidPartnerRequestOwnerNameNull();
-        loadInvalidPartnerRequestOwnerNameEmpty();
-        loadInvalidPartnerRequestDocumentNull();
-        loadInvalidPartnerRequestDocumentEmpty();
-        loadInvalidPartnerRequestAddressNull();
-        loadInvalidPartnerRequestCoverageAreaNull();
-    }
-
-    private void loadValidPartnerRequest() {
+public class PartnerRequestFixture {
+    static void loadValidPartnerRequest() {
         Fixture.of(PartnerRequest.class)
                 .addTemplate("valid", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
@@ -37,7 +24,7 @@ public class PartnerRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerRequestTradingNameNull() {
+    static void loadInvalidPartnerRequestTradingNameNull() {
         Fixture.of(PartnerRequest.class)
                 .addTemplate("invalid_ownerName_null", new Rule() {{
                     add("tradingName", null);
@@ -48,7 +35,7 @@ public class PartnerRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerRequestTradingNameEmpty() {
+    static void loadInvalidPartnerRequestTradingNameEmpty() {
         Fixture.of(PartnerRequest.class)
                 .addTemplate("invalid_ownerName_empty", new Rule() {{
                     add("tradingName", "");
@@ -59,7 +46,7 @@ public class PartnerRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerRequestOwnerNameNull() {
+    static void loadInvalidPartnerRequestOwnerNameNull() {
         Fixture.of(PartnerRequest.class)
                 .addTemplate("invalid_tradingName_null", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
@@ -70,7 +57,7 @@ public class PartnerRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerRequestOwnerNameEmpty() {
+    static void loadInvalidPartnerRequestOwnerNameEmpty() {
         Fixture.of(PartnerRequest.class)
                 .addTemplate("invalid_tradingName_empty", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
@@ -81,7 +68,7 @@ public class PartnerRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerRequestDocumentNull() {
+    static void loadInvalidPartnerRequestDocumentNull() {
         Fixture.of(PartnerRequest.class)
                 .addTemplate("invalid_document_null", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
@@ -92,7 +79,7 @@ public class PartnerRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerRequestDocumentEmpty() {
+    static void loadInvalidPartnerRequestDocumentEmpty() {
         Fixture.of(PartnerRequest.class)
                 .addTemplate("invalid_document_empty", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
@@ -103,7 +90,7 @@ public class PartnerRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerRequestAddressNull() {
+    static void loadInvalidPartnerRequestAddressNull() {
         Fixture.of(PartnerRequest.class)
                 .addTemplate("invalid_address_null", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
@@ -114,7 +101,7 @@ public class PartnerRequestFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInvalidPartnerRequestCoverageAreaNull() {
+    static void loadInvalidPartnerRequestCoverageAreaNull() {
         Fixture.of(PartnerRequest.class)
                 .addTemplate("invalid_coverageArea_null", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));

@@ -13,20 +13,6 @@ services:
     networks:
       - partner-network
 
-  partner:
-    container_name: partner
-    build:
-      context: ..
-      network: host
-      args:
-        SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
-    ports:
-      - 8080:8080
-    depends_on:
-      - mongodb
-    networks:
-      - partner-network
-
 networks:
   partner-network:
     driver: bridge

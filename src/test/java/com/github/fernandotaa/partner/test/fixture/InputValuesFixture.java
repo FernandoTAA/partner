@@ -15,15 +15,10 @@ import static com.github.fernandotaa.partner.util.FixtureUtils.function;
 import static com.github.fernandotaa.partner.util.RandomTestUtils.integer;
 
 /**
- * Fixture template loader for {@link InputValuesFixture} to use in Partner Tests;
+ * Static method to use in {@link MainFixture} for {@link InputValuesFixture} to use in Partner Tests;
  */
-public class InputValuesFixture implements TemplateLoader {
-    @Override
-    public void load() {
-        loadValidPartnerSaverInputValues();
-    }
-
-    private void loadValidPartnerSaverInputValues() {
+public class InputValuesFixture {
+    static void loadValidPartnerSaverInputValues() {
         Fixture.of(PartnerSaverInputValues.class)
                 .addTemplate("valid", new Rule() {{
                     add("partners", function(() -> Fixture.from(PartnerBase.class).gimme(integer(1, 20), "valid")));

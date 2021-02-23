@@ -19,30 +19,24 @@ import static com.github.fernandotaa.partner.util.FixtureUtils.function;
 import static com.github.fernandotaa.partner.util.RandomTestUtils.integer;
 
 /**
- * Fixture template loader for {@link GeoJsonPoint} and {@link GeoJsonMultiPolygon} to use in Partner Tests;
+ * Static method to use in {@link MainFixture} for {@link GeoJsonPoint} and {@link GeoJsonMultiPolygon} to use in Partner Tests;
  */
-public class GeoJsonFixture implements TemplateLoader {
-    @Override
-    public void load() {
-        loadInCoverageAreaGeoJsonPoint();
-        loadOutOfCoverageAreaGeoJsonPoint();
-    }
-
-    private void loadInCoverageAreaGeoJsonPoint() {
+public class GeoJsonFixture {
+    static void loadInCoverageAreaGeoJsonPoint() {
         Fixture.of(GeoJsonPoint.class)
                 .addTemplate("in_coverage_area", new Rule() {{
                     add("coordinates", function(() -> generateGeoJsonPointAddressInCoverageArea().getCoordinates()));
                 }});
     }
 
-    private void loadOutOfCoverageAreaGeoJsonPoint() {
+    static void loadOutOfCoverageAreaGeoJsonPoint() {
         Fixture.of(GeoJsonPoint.class)
                 .addTemplate("out_of_coverage_area", new Rule() {{
                     add("coordinates", function(() -> generateGeoJsonPointAddressOutOfCoverageArea().getCoordinates()));
                 }});
     }
 
-    private GeoJsonPoint generateGeoJsonPointAddressOutOfCoverageArea() {
+    private static GeoJsonPoint generateGeoJsonPointAddressOutOfCoverageArea() {
         var longitude = -43.297337 + 2;
         var latitude = -23.013538 + 2;
         return new GeoJsonPoint(longitude, latitude);

@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  partner:
+    container_name: partner
+    build:
+      context: ..
+      network: host
+      args:
+        SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+        MONGODB_HOST: ${MONGODB_HOST}
+        MONGODB_PORT: ${MONGODB_PORT}
+        MONGODB_DATABASE: ${MONGO_INITDB_DATABASE}
+        MONGODB_USERNAME: ${MONGO_INITDB_USERNAME}
+        MONGODB_PASSWORD: ${MONGO_INITDB_PASSWORD}
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+    networks:
+      - partner-network

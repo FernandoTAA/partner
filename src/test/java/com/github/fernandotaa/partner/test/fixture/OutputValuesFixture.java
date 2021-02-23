@@ -14,23 +14,17 @@ import static com.github.fernandotaa.partner.util.FixtureUtils.function;
 import static com.github.fernandotaa.partner.util.RandomTestUtils.integer;
 
 /**
- * Fixture template loader for {@link OutputValuesFixture} to use in Partner Tests;
+ * Static method to use in {@link MainFixture} for {@link OutputValuesFixture} to use in Partner Tests;
  */
-public class OutputValuesFixture implements TemplateLoader {
-    @Override
-    public void load() {
-        loadValidPartnerGetterByIdOutputValues();
-        loadInvalidPartnerGetterByIdOutputValuesEmpty();
-    }
-
-    private void loadValidPartnerGetterByIdOutputValues() {
+public class OutputValuesFixture {
+    static void loadValidPartnerGetterByIdOutputValues() {
         Fixture.of(PartnerGetterPartnerOutputValues.class)
                 .addTemplate("valid", new Rule() {{
                     add("partner", function(() -> Optional.of(Fixture.from(Partner.class).gimme("valid"))));
                 }});
     }
 
-    private void loadInvalidPartnerGetterByIdOutputValuesEmpty() {
+    static void loadInvalidPartnerGetterByIdOutputValuesEmpty() {
         Fixture.of(PartnerGetterPartnerOutputValues.class)
                 .addTemplate("empty", new Rule() {{
                     add("partner", Optional.empty());

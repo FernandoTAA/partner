@@ -11,17 +11,10 @@ import com.github.javafaker.Faker;
 import static com.github.fernandotaa.partner.util.FixtureUtils.function;
 
 /**
- * Fixture template loader for {@link PartnerFixture} to use in Partner Tests;
+ * Static method to use in {@link MainFixture} for {@link PartnerFixture} to use in Partner Tests;
  */
-public class PartnerFixture implements TemplateLoader {
-    @Override
-    public void load() {
-        loadValidPartner();
-        loadValidPartnerBase();
-        loadInCoverageAreaPartnerBase();
-    }
-
-    private void loadValidPartner() {
+public class PartnerFixture {
+    static void loadValidPartner() {
         Fixture.of(Partner.class)
                 .addTemplate("valid", new Rule() {{
                     add("id", function(RandomTestUtils::uuid));
@@ -33,7 +26,7 @@ public class PartnerFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadValidPartnerBase() {
+    static void loadValidPartnerBase() {
         Fixture.of(PartnerBase.class)
                 .addTemplate("valid", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
@@ -44,7 +37,7 @@ public class PartnerFixture implements TemplateLoader {
                 }});
     }
 
-    private void loadInCoverageAreaPartnerBase() {
+    static void loadInCoverageAreaPartnerBase() {
         Fixture.of(PartnerBase.class)
                 .addTemplate("in_coverage_area", new Rule() {{
                     add("tradingName", function(Faker.instance().company()::name));
